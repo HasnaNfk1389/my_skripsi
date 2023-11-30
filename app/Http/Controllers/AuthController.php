@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
@@ -10,15 +11,14 @@ class AuthController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function login ()
+    public function login()
     {
-        return view ('auth/login');
+        return view('auth/login');
     }
 
-    public function welcome ()
+    public function welcome()
     {
-        dd(Auth::login);
-        return view ('welcome');
+        return view('welcome');
     }
 
     public function regis()
@@ -28,10 +28,16 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-        
+
         $name = $request->name;
         $email = $request->email;
         $password = $request->password;
+        $phone = $request->phone;
+        $role = 'user';
+        $confirm_password = $request->confirm_password;
+        if ($password != $confirm_password) {
+            return redirect('/regis');
+        }
         try {
             $client = new Client();
             $response = $client->post('http://localhost:3000/register', [
@@ -42,56 +48,80 @@ class AuthController extends Controller
                     'name' => $name,
                     'email' => $email,
                     'password' => $password,
+                    'phone' => $phone,
+                    'role' => $role,
                 ],
             ]);
 
             $data = json_decode($response->getBody(), true);
-            // dd($data);
             if (isset($data[0]['payload']['isSuccess']) && $data[0]['payload']['isSuccess'] === 'success') {
                 $userId = $data[0]['payload']['id'];
-                // $userName = $data[0]['payload']['name'];
                 $userDetailsResponse = $client->get("http://localhost:3000/getIDUser/{$userId}");
                 $userDetails = json_decode($userDetailsResponse->getBody(), true);
-                // dd($userDetails);
                 $userName = $userDetails[0]['payload'][0]['name'];
                 $userEmail = $userDetails[0]['payload'][0]['email'];
+                $userRole = $userDetails[0]['payload'][0]['role'];
                 session(['loggedUserId' => $userId]);
                 session(['loggedUserName' => $userName]);
                 session(['loggedUserEmail' => $userEmail]);
-                
-                return redirect('/');
+                session(['loggedUserRole' => $userRole]);
+                if (session('loggedUserRole') == 'admin') {
+                    return redirect('/welcome_admin');
+                } else if (session('loggedUserRole') == 'teacher') {
+                    return redirect('/welcome_lecturer');
+                } else {
+                    return redirect('/welcome');
+                }
             } else {
                 return redirect('/regis');
             }
-        } catch (RequestException $e) {
+        } catch (\Exception $e) {
             return redirect('/regis');
         }
     }
-    
+
     public function postLogin(Request $request)
     {
         $email = $request->email;
         $password = $request->password;
-
-        $client = new Client();
-        $response = $client->post('http://localhost:3000/login', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-            ],
-            'json' => [
-                'email' => $email,
-                'password' => $password,
-            ],
-        ]);
-        dd($response->getStatusCode());
-
-    // if ($response->getStatusCode() == 200) {
-    //     return redirect('/');
-    // } else {
-    //     return redirect('/login');
-    // }
+        try {
+            $client = new Client();
+            $response = $client->post('http://localhost:3000/login', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'email' => $email,
+                    'password' => $password,
+                ],
+            ]);
+            $data = json_decode($response->getBody(), true);
+            if (isset($data[0]['payload']['isSuccess']) && $data[0]['payload']['isSuccess'] === 'success') {
+                $userId = $data[0]['payload']['id'];
+                $userDetailsResponse = $client->get("http://localhost:3000/getIDUser/{$userId}");
+                $userDetails = json_decode($userDetailsResponse->getBody(), true);
+                $userName = $userDetails[0]['payload'][0]['name'];
+                $userEmail = $userDetails[0]['payload'][0]['email'];
+                $userRole = $userDetails[0]['payload'][0]['role'];
+                session(['loggedUserId' => $userId]);
+                session(['loggedUserName' => $userName]);
+                session(['loggedUserEmail' => $userEmail]);
+                session(['loggedUserRole' => $userRole]);
+                if (session('loggedUserRole') == 'admin') {
+                    return redirect('/welcome_admin');
+                } else if (session('loggedUserRole') == 'teacher') {
+                    return redirect('/welcome_lecturer');
+                } else {
+                    return redirect('/welcome');
+                }
+            } else {
+                return redirect('/login');
+            }
+        } catch (\Exception $e) {
+            return redirect('/login');
+        }
     }
-    
+
     public function logout()
     {
         session()->flush();
@@ -107,7 +137,7 @@ class AuthController extends Controller
     {
         return view('student/profile');
     }
-    
+
     public function welcome_lecturer()
     {
         return view('lecturer/welcome_lecturer');

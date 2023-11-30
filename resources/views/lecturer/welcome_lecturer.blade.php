@@ -13,13 +13,11 @@
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" type="text/css" href="style/vendor/fontawesome-free/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href ="style/css/sb-admin-2.css">
-    <link rel="stylesheet" href ="style/css/style.css">
+    <link rel="stylesheet" href="style/css/sb-admin-2.css">
+    <link rel="stylesheet" href="style/css/style.css">
 
 </head>
 
@@ -40,14 +38,14 @@
             <hr class="sidebar-divider my-0">
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
-                
+
             </div>
 
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/newMateri">
+                <a class="nav-link" href="/show_materi">
                     <i class="fas fa-book fa-2x text-gray-300"></i>
                     <span>Materi</span></a>
             </li>
@@ -64,9 +62,9 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-           
+
             <!-- Sidebar Message -->
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -77,10 +75,10 @@
             <!-- Main Content -->
             <div id="content">
 
-                
+
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    
+
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
@@ -88,18 +86,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -112,15 +106,13 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                               
+
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                           
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Notification
                                 </h6>
@@ -136,7 +128,7 @@
                                         <span class="font-weight-bold">Muhammad Rizky telah mengumpulkan tugas</span>
                                     </div>
                                 </a>
-                               <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
@@ -156,15 +148,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Lecturer</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="/profile_lecturer">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -180,19 +169,19 @@
                     </ul>
 
                 </nav>
-                
+
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
                     <div class="row">
-                    
-                    </div>    
+
+                    </div>
 
                     <!-- Content Row -->
 
                     <div class="row">
-                        <div class ="container">
+                        <div class="container">
                             <div class="col-50">
                                 <h5>Welcome Lecturer!</h5>
                             </div>
@@ -201,16 +190,13 @@
                         <div class="col-xl-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                             <!--<div class="dropdown-header">Dropdown Header:</div>
                                             <a class="dropdown-item" href="#">Edit</a>
                                             <a class="dropdown-item" href="#">Another action</a>
@@ -225,9 +211,9 @@
                                         <div class="row">
                                             <div class="col-50">
                                                 <h6>New</h6>
-                                                
+
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -235,10 +221,10 @@
                         </div>
                     </div>
 
-                   <!--  Content Row -->
+                    <!--  Content Row -->
                     <div class="row">
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">                            
+                        <div class="col-lg-6 mb-4">
                         </div>
                         <div class="col-lg-6 mb-4">
                         </div>
@@ -272,8 +258,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

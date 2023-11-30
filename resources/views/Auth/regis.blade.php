@@ -13,13 +13,11 @@
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" type="text/css" href="style/vendor/fontawesome-free/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href ="style/css/sb-admin-2.css">
-    <link rel="stylesheet" href ="style/css/style.css">
+    <link rel="stylesheet" href="style/css/sb-admin-2.css">
+    <link rel="stylesheet" href="style/css/style.css">
 
 </head>
 
@@ -40,7 +38,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Create An Account!</h1>
-                                    </div> 
+                                    </div>
                                     @if(Session::has('status'))
                                     <div class="alert alert-success" role="alert">
                                         {{Session::get('message')}}
@@ -49,28 +47,33 @@
                                     <form class="user" action="/postRegister" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control form-control-user" id="exampleFirstName"
-                                                placeholder="Masukkan Nama Lengkap">
+                                            <input type="text" name="name" class="form-control form-control-user" id="exampleFirstName" placeholder="Masukkan Nama Lengkap">
                                             <!-- <div class="col-sm-6">
                                                 <input type="text" class="form-control form-control-user" id="exampleLastName"
                                                    placeholder="Last Name">
                                             </div> -->
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail"
-                                                placeholder="Email Address">
+                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="password" name="password" class="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password">
+                                                <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="exampleRepeatPassword" placeholder="Repeat Password">
-                                                </div>
+                                                <input type="password" name="confirm_password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            </div>
                                         </div>
-                                        <button type ="submit" class="btn btn-primary btn-user btn-block">
+                                        <div class="form-group">
+                                            <input type="number" name="phone" class="form-control form-control-user" id="exampleInputPhone" placeholder="Phone Number">
+                                        </div>
+                                        <select class="form-select mb-2 rounded-full" aria-label="Default select example">
+                                            <option selected>Pilih Kelas</option>
+                                            <option value="12-IPS">12-IPS</option>
+                                            <option value="12-IPA">12-IPA</option>
+                                            <option value="12-Agama">12-Agama</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Register Account
                                         </button>
                                         <hr>
@@ -81,10 +84,10 @@
                                             <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                         </a>-->
                                     </form>
-                                    
+
                                     <div class="text-center">
                                         <a class="small" href="/forgot">Forgot Password?</a>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>

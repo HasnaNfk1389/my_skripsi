@@ -30,42 +30,26 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/welcome">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/welcome_admin">
                 <div class="sidebar-brand-text mx-3">Task Collection </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-
-
-
-
-            <!-- Heading -->
             <div class="sidebar-heading">
 
             </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/download">
-                    <i class="fas fa-download fa-sm fa-2x text-gray-300"></i>
-                    <span>Download</span></a>
-            </li>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/materi">
+                <a class="nav-link" href="/all_materi">
                     <i class="fas fa-book fa-2x text-gray-300"></i>
                     <span>Materi</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/materi">
+                <a class="nav-link" href="/add_tasks">
                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     <span>Tasks</span></a>
             </li>
@@ -213,58 +197,28 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Materi</h6>
                                 </div>
                                 <div class="card-body">
+                                    <a href="/add_materi">
+                                        <button class="button button2">Tambah Materi</button>
+                                    </a>
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Judul Materi</th>
-                                                    <th colspan="2">Link</th>
+                                                    <th name="user_id">No</th>
+                                                    <th name="nama_materi">Judul Materi</th>
+                                                    <th name="nama_materi">Deskripsi Materi</th>
+                                                    <th>Lihat Materi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach($materiData[0]['payload'] as $materi)
                                                 <tr>
-                                                    <td>BAB I</td>
-                                                    <td>Memahami kondisi wilayah dan posisi strategis Indonesia sebagai poros maritim dunia</td>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ isset($materi['judul']) ? $materi['judul'] : 'N/A' }}</td>
+                                                    <td>{{ isset($materi['deskripsi']) ? $materi['deskripsi'] : 'N/A' }}</td>
                                                     <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>BAB II</td>
-                                                    <td>Menganalisis sebaran flora dan fauna di Indonesia dan dunia berdasarkan karakteristik ekosistem</td>
-                                                    <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BAB III</td>
-                                                    <td>Menganalisis sebaran dan pengelolaan sumber daya kehutanan, pertambangan, kelautan, dan pariwisata sesuai prinsip-prinsip pembangunan berkelanjutan</td>
-                                                    <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BAB IV</td>
-                                                    <td>Menganalisis ketahanan pangan nasional, penyediaan bahan industri, serta potensi energi baru dan terbarukan di Indonesia</td>
-                                                    <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BAB V</td>
-                                                    <td>Menganalisis dinamika kependudukan di Indonesia untuk perencanaan pembangunan</td>
-                                                    <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BAB VI</td>
-                                                    <td>Menganalisis keragaman budaya bangsa sebagai identitas nasional berdasarkan keunikan dan sebaran</td>
-                                                    <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BAB VII</td>
-                                                    <td>Menganalisis jenis dan penanggulangan bencana alam melalui edukasi, kearifan lokal, dan pemanfaatan teknologi modern</td>
-                                                    <td><button class="button button2">Open</button></td>
-                                                    <td><button class="button button1">Download</button></td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

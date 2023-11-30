@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class AdminController extends Controller
 {
@@ -38,7 +40,7 @@ class AdminController extends Controller
 
             $data = json_decode($response->getBody(), true);
             return redirect('/tasks');
-        } catch (RequestException $e) {
+        } catch (ClientException $e) {
             return redirect('/tasks');
         }
     }

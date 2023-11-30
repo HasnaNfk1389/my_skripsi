@@ -13,13 +13,11 @@
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" type="text/css" href="style/vendor/fontawesome-free/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href ="style/css/sb-admin-2.css">
-    <link rel="stylesheet" href ="style/css/style.css">
+    <link rel="stylesheet" href="style/css/sb-admin-2.css">
+    <link rel="stylesheet" href="style/css/style.css">
 
 </head>
 
@@ -44,7 +42,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/add_materi">
+                <a class="nav-link" href="/all_task">
                     <i class="fas fa-book fa-2x text-gray-300"></i>
                     <span>Materi</span></a>
             </li>
@@ -76,25 +74,21 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -105,24 +99,21 @@
                             </div>
                         </li>
 
-                        
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('loggedUserName') }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="/profile_admin">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>                               
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/login" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -149,11 +140,11 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="container">
-                                    <form action="/postTugas" method="PUT">
-                                        @foreach($items as $item)
+                                        <form action="/postTugas" method="PUT">
+                                            @foreach($items as $item)
                                             @csrf
                                             <div class="row">
-                                            <input type="text" id="user_id" name="user_id" value="{{ session('loggedUserId') }}">
+                                                <input type="text" id="user_id" name="user_id" value="{{ session('loggedUserId') }}">
                                                 <div class="col-25">
                                                     <label for="tname">Nama Tugas</label>
                                                 </div>
@@ -182,8 +173,8 @@
                                                     <label for="tanggal">Upload File</label>
                                                 </div>
                                                 <div class="col-75">
-                                                <!-- <input type="text" id="file" name="file" placeholder="Masukkan File"> -->
-                                                <input type="file" id="file" name="file" multiple>
+                                                    <!-- <input type="text" id="file" name="file" placeholder="Masukkan File"> -->
+                                                    <input type="file" id="file" name="file" multiple>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -199,15 +190,15 @@
                                                 <button class="button button2" type="{{ route('items.edit', $item->id) }}">Edit</button>
                                             </div>
                                         </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>    
 
-                <div class="row">  
-                </div>
-                   <!--  Content Row -->
+                    <div class="row">
+                    </div>
+                    <!--  Content Row -->
                     <div class="row">
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
@@ -243,8 +234,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
