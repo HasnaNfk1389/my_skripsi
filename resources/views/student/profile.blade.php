@@ -36,23 +36,11 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-
-
-
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#l">
+                <a class="nav-link" href="/download">
                     <i class="fas fa-download fa-sm fa-2x text-gray-300"></i>
                     <span>Download</span></a>
             </li>
@@ -158,7 +146,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ubah Profile</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -180,28 +168,20 @@
                                                     <input type="text" id="lname" name="lastname" placeholder="Email..">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-25">
                                                     <label for="Address">Alamat</label>
                                                 </div>
                                                 <div class="col-75">
                                                     <input type="text" id="lname" name="lastname" placeholder="Alamat..">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                 <div class="col-25">
                                                     <label for="phone">Telephone</label>
                                                 </div>
                                                 <div class="col-75">
                                                     <input type="number" id="lname" name="lastname" placeholder="No. Telp..">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-25">
-                                                    <label for="tanggal">Tanggal Lahir</label>
-                                                </div>
-                                                <div class="col-75">
-                                                    <input type="date" id="lname" name="lastname">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -220,18 +200,23 @@
                                                     <input type="password" id="lname" name="lastname" placeholder="Password">
                                                 </div>
                                             </div>
+                                            
                                             <div class="row">
                                                 <div class="col-25">
-                                                    <label for="file">Foto</label>
+                                                    <label for="name">Login Sebagai</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="file" id="myfile" name="myfile" multiple>
+                                                    <select id="roleselect" name="role" class="form-control">
+                                                        <option selected disabled>Choose...</option>
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="Lecturer">Lecturer</option>
+                                                        <option value="Student">Student</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row">
                                                 <button class="button button1">Submit</button>
-                                                <button class="button button2">Edit</button>
                                             </div>
                                         </form>
                                     </div>

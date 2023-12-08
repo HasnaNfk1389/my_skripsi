@@ -70,6 +70,53 @@ class TugasController extends Controller
         }
     }
 
+    public function all_task()
+    {
+        //dd(session('loggedUserClass'));
+        //try {
+            $client = new Client();
+            $response = $client->get('http://localhost:3000/all_task');
+            $data = json_decode($response->getBody(), true);
+
+            $filteredtask = [];
+            foreach ($data[0]['payload'] as $task) {
+                if ($task['kelas'] == session('loggedUserClass')) {
+                // <!-- if ($task['kelas'] == 'XI IPS') { -->
+                    $filteredtask[] = $task;
+                }
+            }
+            return view('student/all_task', ['taskData' => $filteredtask]);
+        // } catch (\Exception $e) {
+        //     return redirect('/all_task');
+        // }
+    }
+
+    public function store_tugas(Request $request)
+    {
+        $nama_siswa = $request->nama_siswa;
+        $kelas = $request->kelas;
+        $nama_tugas = $request->request;
+        $tgl = $tgl->request;
+        // dd($judul, $deskripsi);
+        try {
+            $client = new Client();
+            $response = $client->post('http://localhost:3000/materi', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'nama_siswa' => $nama_siswa,
+                    'kelas' => $kelas,
+                    'nama_tugas' => $nama_tugas,
+                    'tgl' => $tgl,
+                ],
+            ]);
+            return redirect('/all_task');
+        } catch (ClientException $e) {
+            return redirect('/tasks');
+        }
+    }
+
     // public function postTask()
     // {
     //     $user_id = $request->user_id;

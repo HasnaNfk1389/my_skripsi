@@ -67,12 +67,14 @@
                                         <div class="form-group">
                                             <input type="number" name="phone" class="form-control form-control-user" id="exampleInputPhone" placeholder="Phone Number">
                                         </div>
-                                        <select class="form-select mb-2 rounded-full" aria-label="Default select example">
+                                        <div class="form-group">
+                                        <select class="form-select mb-2 rounded-full" name="kelas" aria-label="Default select example">
                                             <option selected>Pilih Kelas</option>
-                                            <option value="12-IPS">12-IPS</option>
-                                            <option value="12-IPA">12-IPA</option>
-                                            <option value="12-Agama">12-Agama</option>
+                                            <option value="XI-IPS">XI-IPS</option>
+                                            <option value="XI-IPA">XI-IPA</option>
+                                            <option value="XI-Agama">XI-Agama</option>
                                         </select>
+                                        </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Register Account
                                         </button>
@@ -87,6 +89,9 @@
 
                                     <div class="text-center">
                                         <a class="small" href="/forgot">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/login">Have Account?Login Here!</a>
                                     </div>
                                 </div>
                             </div>

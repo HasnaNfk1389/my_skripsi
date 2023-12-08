@@ -30,31 +30,31 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/welcome_lecturer">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/welcome">
                 <div class="sidebar-brand-text mx-3">Task Collection </div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-            <hr class="sidebar-divider">
             <div class="sidebar-heading">
-
             </div>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/download">
+                    <i class="fas fa-download fa-sm fa-2x text-gray-300"></i>
+                    <span>Download</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/show_materi">
+                <a class="nav-link" href="/materi">
                     <i class="fas fa-book fa-2x text-gray-300"></i>
                     <span>Materi</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/newTasks">
+                <a class="nav-link" href="/tasks">
                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    <span>Tugas Baru</span></a>
+                    <span>Tasks</span></a>
             </li>
 
             <!-- Divider -->
@@ -75,13 +75,17 @@
             <!-- Main Content -->
             <div id="content">
 
-
+                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-
+                    <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+
+
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -104,7 +108,6 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -123,9 +126,9 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">20 November 2022</div>
-                                        <div class="small text-gray-500">17:30 WIB</div>
-                                        <span class="font-weight-bold">Muhammad Rizky telah mengumpulkan tugas</span>
+                                        <div class="small text-gray-500">17 November 2022</div>
+                                        <div class="small text-gray-500">08:30 WIB</div>
+                                        <span class="font-weight-bold">Ada tugas yang harus dikumpulkan!</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -135,9 +138,21 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">22 November 2022</div>
-                                        <div class="small text-gray-500">18:30 WIB</div>
-                                        <span class="font-weight-bold">Ilham Ramadhan telah mengumpulkna tugas</span>
+                                        <div class="small text-gray-500">17 November 2022</div>
+                                        <div class="small text-gray-500">08:30 WIB</div>
+                                        <span class="font-weight-bold">Ada tugas yang harus dikumpulkan!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">17 November 2022</div>
+                                        <div class="small text-gray-500">08:30 WIB</div>
+                                        <span class="font-weight-bold">Ada tugas yang harus dikumpulkan!</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
@@ -149,11 +164,11 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('loggedUserEmail') }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('loggedUserName') }}</span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/profile_lecturer">
+                                <a class="dropdown-item" href="/profile">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -168,129 +183,121 @@
                     </ul>
 
                 </nav>
-
+                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
                     <div class="row">
-
                     </div>
-
                     <!-- Content Row -->
-
                     <div class="row">
-                        <div class="container">
-                            <div class="col-50">
-                                <h5>Welcome {{ session('loggedUserEmail') }}!</h5>
-                            </div>
-                        </div>
                         <!-- Area Chart -->
                         <div class="col-xl-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <!--<div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>-->
-                                        </div>
-                                    </div>
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Semua Tugas - {{ session('loggedUserClass') }}</h6>
                                 </div>
-                                <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-50">
-                                                <h6>New</h6>
-
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th name="user_id">No</th>
+                                                    <th name="nama_siswa">Nama Siswa</th>
+                                                    <th name="kelas">Kelas</th>
+                                                    <th name="namatugas">Nama Tugas</th>
+                                                    <th name="file">Upload Foto/File</th>
+                                                    <th name="tanggalmasuk">Tanggal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($taskData as $task)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ isset($task['nama_siswa']) ? $task['nama_siswa'] : 'N/A' }}</td>
+                                                    <td>{{ isset($task['kelas']) ? $task['kelas'] : 'N/A' }}</td>
+                                                    <td>{{ isset($task['namatugas']) ? $task['namatugas'] : 'N/A' }}</td>
+                                                    <td>{{ isset($task['file']) ? $task['file'] : 'N/A' }}</td>
+                                                    <td>{{ isset($task['tanggalmasuk']) ? $task['tanggalmasuk'] : 'N/A' }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="/all_tasks">Tasks</a>
                                             </div>
-
-                                        </div>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                            <!--  Content Row -->
+                            <div class="row">
+                                <!-- Content Column -->
+                                <div class="col-lg-6 mb-4">
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                </div>
+                            </div>
                         </div>
+                        <!-- /.container-fluid -->
                     </div>
+                    <!-- End of Main Content -->
 
-                    <!--  Content Row -->
-                    <div class="row">
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Your Website 2021</span>
+                            </div>
                         </div>
-                        <div class="col-lg-6 mb-4">
-                        </div>
-                    </div>
+                    </footer>
+                    <!-- End of Footer -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Page Wrapper -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bersiap untuk pergi?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Apakah kamu yakin?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="/login">Logout</a>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Bersiap untul pergi?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="modal-body">Apakah kamu yakin?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/login">Logout</a>
-                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="style/vendor/jquery/jquery.min.js"></script>
-    <script src="style/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="style/vendor/jquery/jquery.min.js"></script>
+            <script src="style/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="style/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="style/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="style/js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="style/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="style/vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="style/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="style/js/demo/chart-area-demo.js"></script>
-    <script src="style/js/demo/chart-pie-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="style/js/demo/chart-area-demo.js"></script>
+            <script src="style/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

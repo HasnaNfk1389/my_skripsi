@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/add_materi">
+                <a class="nav-link" href="/all_materi">
                     <i class="fas fa-book fa-2x text-gray-300"></i>
                     <span>Materi</span></a>
             </li>
@@ -53,7 +53,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/add_tasks">
                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    <span>Tasks</span></a>
+                    <span>Tugas Baru</span></a>
             </li>
 
             <!-- Divider -->
@@ -118,9 +118,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('loggedUserEmail') }}</span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -130,7 +128,7 @@
                                     Profile
                                 </a>                               
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="/login" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -155,7 +153,8 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="container">
-                                        <form action="/action_page.php">
+                                        <form action="/postProfile">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-25">
                                                     <label for="fname">Nama Lengkap</label>
@@ -174,10 +173,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-25">
-                                                    <label for="name">Username</label>
+                                                    <label for="name">Phone</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="number" id="lname" name="lastname" placeholder="Username">
+                                                    <input type="number" id="phone" name="phone" placeholder="Masukkan Nomor Handphone">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -185,7 +184,7 @@
                                                     <label for="password">Password</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="password" id="lname" name="lastname" placeholder="Password">
+                                                    <input type="password" id="password" name="password" placeholder="Password">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -193,7 +192,7 @@
                                                     <label for="name">Login Sebagai</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <select id="roleselect" name="role" class="form-control">
+                                                    <select id="roleselect" id="is_admin" name="is_admin" class="form-control">
                                                         <option selected disabled>Choose...</option>
                                                         <option value="Admin">Admin</option>
                                                         <option value="Lecturer">Lecturer</option>
@@ -278,15 +277,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Bersiap untuk Pergi?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Apakah Kamu Yakin?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="/login">Logout</a>
                 </div>
             </div>
         </div>

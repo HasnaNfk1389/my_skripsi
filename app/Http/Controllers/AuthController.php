@@ -35,6 +35,7 @@ class AuthController extends Controller
         $phone = $request->phone;
         $role = 'user';
         $confirm_password = $request->confirm_password;
+        $kelas = $request->kelas;
         if ($password != $confirm_password) {
             return redirect('/regis');
         }
@@ -50,6 +51,7 @@ class AuthController extends Controller
                     'password' => $password,
                     'phone' => $phone,
                     'role' => $role,
+                    'kelas' => $kelas,
                 ],
             ]);
 
@@ -61,10 +63,12 @@ class AuthController extends Controller
                 $userName = $userDetails[0]['payload'][0]['name'];
                 $userEmail = $userDetails[0]['payload'][0]['email'];
                 $userRole = $userDetails[0]['payload'][0]['role'];
+                $userKelas = $userDetails[0]['payload'][0]['kelas'];
                 session(['loggedUserId' => $userId]);
                 session(['loggedUserName' => $userName]);
                 session(['loggedUserEmail' => $userEmail]);
                 session(['loggedUserRole' => $userRole]);
+                session(['loggedUserClass' => $userKelas]);
                 if (session('loggedUserRole') == 'admin') {
                     return redirect('/welcome_admin');
                 } else if (session('loggedUserRole') == 'teacher') {
@@ -79,7 +83,6 @@ class AuthController extends Controller
             return redirect('/regis');
         }
     }
-
     public function postLogin(Request $request)
     {
         $email = $request->email;
@@ -103,10 +106,12 @@ class AuthController extends Controller
                 $userName = $userDetails[0]['payload'][0]['name'];
                 $userEmail = $userDetails[0]['payload'][0]['email'];
                 $userRole = $userDetails[0]['payload'][0]['role'];
+                $userKelas = $userDetails[0]['payload'][0]['kelas'];
                 session(['loggedUserId' => $userId]);
                 session(['loggedUserName' => $userName]);
                 session(['loggedUserEmail' => $userEmail]);
                 session(['loggedUserRole' => $userRole]);
+                session(['loggedUserClass' => $userKelas]);
                 if (session('loggedUserRole') == 'admin') {
                     return redirect('/welcome_admin');
                 } else if (session('loggedUserRole') == 'teacher') {

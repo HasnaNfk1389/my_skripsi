@@ -21,38 +21,46 @@ use App\Http\Controllers\MateriController;
 
 Route::get('/welcome', [App\Http\Controllers\AuthController::class, 'welcome'])->middleware('user');
 
+//Auth
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+Route::get('/forgot', [App\Http\Controllers\AuthController::class, 'forgot']);
+Route::post('/postForgot',[App\Http\Controllers\AuthController::class, 'forgot']);
 
+//Auth
 Route::get('/regis', [App\Http\Controllers\AuthController::class, 'regis']);
 Route::post('/postRegister', [App\Http\Controllers\AuthController::class, 'postRegister']);
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/postLogin', [App\Http\Controllers\AuthController::class, 'postLogin']);
-Route::get('/forgot', [App\Http\Controllers\AuthController::class, 'forgot']);
-Route::get('/tasks', [App\Http\Controllers\TugasController::class, 'tasks']);
-Route::post('/postTugas', [App\Http\Controllers\TugasController::class, 'postTugas']);
+
+//admin
 Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile']);
 Route::get('/download', [App\Http\Controllers\AuthController::class, 'download']);
-Route::get('/newTask', [App\Http\Controllers\TugasController::class, 'newTask']);
-//Route::post('/postNewTugas',[App\Http\Controllers\TugasController::class,'postNewTugas']);
-Route::post('/postNewMateri', [MateriController::class, 'postNewMateri']);
+Route::get('/add_user', [App\Http\Controllers\AdminController::class, 'add_user']);
 Route::get('/welcome_lecturer', [App\Http\Controllers\AuthController::class, 'welcome_lecturer']);
 Route::get('/profile_lecturer', [App\Http\Controllers\AuthController::class, 'profile_lecturer']);
 Route::get('/welcome_admin', [App\Http\Controllers\AuthController::class, 'welcome_admin'])->middleware('admin');
-Route::get('/profile_admin', [App\Http\Controllers\AuthController::class, 'profile_admin']);
+Route::get('/profile_admin', [App\Http\Controllers\AuthController::class, 'profile_admin'])->middleware('admin');
+
+//tugas
+Route::get('/tasks', [App\Http\Controllers\TugasController::class, 'tasks']);
+Route::post('/postTugas', [App\Http\Controllers\TugasController::class, 'postTugas']);
+Route::get('/newTask', [App\Http\Controllers\TugasController::class, 'newTask']);
+Route::get('/all_task',[App\Http\Controllers\TugasController::class, 'all_task']);
+//Route::post('/postNewTugas',[App\Http\Controllers\TugasController::class,'postNewTugas']);
 Route::get('/add_task', [App\Http\Controllers\TugasController::class, 'add_task']);
-Route::put('/editTugas', [AdminController::class, 'editTugas']);
-Route::delete('/hapusTugas', [AdminController::class, 'hapusTugas']);
-Route::get('/add_user', [App\Http\Controllers\AdminController::class, 'add_user']);
+// Route::put('/editTugas', [AdminController::class, 'editTugas'])->middleware('user');
+Route::delete('/hapusTugas', [AdminController::class, 'hapusTugas'])->middleware('user');
+
 
 // MATERI ROUTES ADMIN
-Route::get('/add_materi', [App\Http\Controllers\MateriController::class, 'add_materi'])->middleware('teacher');
+Route::get('/add_materi', [App\Http\Controllers\MateriController::class, 'add_materi']);
 Route::post('/store_materi', [App\Http\Controllers\MateriController::class, 'store_materi'])->middleware('admin');
 Route::get('/all_materi', [App\Http\Controllers\MateriController::class, 'all_materi'])->middleware('admin');
-Route::get('/teacher_materi', [App\Http\Controllers\MateriController::class, 'newMateri']);
+Route::get('/teacher_materi', [App\Http\Controllers\MateriController::class, 'newMateri'])->middleware('admin');
+Route::post('/postNewMateri', [MateriController::class, 'postNewMateri']);
 
 // MATERI ROUTES USER
 Route::get('/materi', [App\Http\Controllers\MateriController::class, 'materi'])->middleware('user');
-
 
 // MATERI ROUTES TEACHER
 Route::get('/show_materi', [App\Http\Controllers\MateriController::class, 'all_materi'])->middleware('teacher');
