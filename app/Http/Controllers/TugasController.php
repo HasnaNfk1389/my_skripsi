@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class TugasController extends Controller
 {
@@ -40,13 +41,12 @@ class TugasController extends Controller
 
     public function postTugas(Request $request) 
     {
-        $user_id = $request->user_id;
+        $user_id = session('loggedUserId');
         $nama_siswa = $request->nama_siswa;
         $kelas = $request->kelas;
-        $namatugas = $request->namatugas;
-        $file = $request->file;
-        $tanggalmasuk = $request->tanggalmasuk;
-
+        $status = $request->status;
+        $tanggalmasuk = date('Y-m-d H:i:s');
+        $task_id = $request->task_id;
 
         try {
             $client = new Client();
@@ -58,45 +58,62 @@ class TugasController extends Controller
                     'user_id' => $user_id,
                     'nama_siswa' => $nama_siswa,
                     'kelas' => $kelas,
-                    'namatugas' => $namatugas,
-                    'file' => $file,
+                    'status' => $status,
                     'tanggalmasuk' => $tanggalmasuk,
+                    'task_id' => $task_id,
                 ],
             ]);
             $data = json_decode($response->getBody(), true);
             return redirect('/tasks');
-        } catch (RequestException $e) {
+        } catch (ClientException $e) {
             return redirect('/tasks');
         }
     }
 
     public function all_task()
     {
-        //dd(session('loggedUserClass'));
-        //try {
-            $client = new Client();
-            $response = $client->get('http://localhost:3000/all_task');
-            $data = json_decode($response->getBody(), true);
+        $client = new Client();
+        $response = $client->get('http://localhost:3000/all_task');
+        $data = json_decode($response->getBody(), true);
 
-            $filteredtask = [];
-            foreach ($data[0]['payload'] as $task) {
-                if ($task['kelas'] == session('loggedUserClass')) {
-                // <!-- if ($task['kelas'] == 'XI IPS') { -->
-                    $filteredtask[] = $task;
+        $status_client = new Client();
+        $response = $status_client->get('http://localhost:3000/semua_tugas');
+        $check_status = json_decode($response->getBody(), true);
+        
+        $logged_id = session('loggedUserId');
+        $result = [];
+
+        $filteredtask = [];
+        
+        foreach ($data[0]['payload'] as $task) {
+            if ($task['kelas'] == session('loggedUserClass')) {
+                $taskId = $task['id'];
+                
+                foreach ($check_status as $statusData) {
+                    foreach ($statusData['payload'] as $status) {
+                        // dd($status['user_id'], $logged_id, $status['task_id'], $taskId);
+                        if ($status['user_id'] === $logged_id && $status['task_id'] === $taskId) {
+                            $result[] = "Sudah Mengumpulkan";
+                        }
+                    }
                 }
+                $filteredtask[] = $task;
             }
-            return view('student/all_task', ['taskData' => $filteredtask]);
-        // } catch (\Exception $e) {
-        //     return redirect('/all_task');
-        // }
+        }
+
+        return view('student/all_task', ['taskData' => $filteredtask, 'result_status' => $result]);
+    }
+
+    public function submit_task($id) {
+        return view('student/submit_task', ['task_id' => $id]);
+        // return view('student/submit_task');
     }
 
     public function store_tugas(Request $request)
     {
         $nama_siswa = $request->nama_siswa;
         $kelas = $request->kelas;
-        $nama_tugas = $request->request;
-        $tgl = $tgl->request;
+        $tgl = $request->tgl;
         // dd($judul, $deskripsi);
         try {
             $client = new Client();
@@ -107,7 +124,6 @@ class TugasController extends Controller
                 'json' => [
                     'nama_siswa' => $nama_siswa,
                     'kelas' => $kelas,
-                    'nama_tugas' => $nama_tugas,
                     'tgl' => $tgl,
                 ],
             ]);
@@ -157,4 +173,9 @@ class TugasController extends Controller
     {
         return view('lecturer/newTask');
     }
+    public function all_task_teacher()
+    {
+        return view('lecturer/newTask');
+    }
+
 }

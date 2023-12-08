@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
-
+use GuzzleHttp\Exception\ClientException;
 
 class MateriController extends Controller
 {
@@ -90,7 +90,7 @@ class MateriController extends Controller
             $data = json_decode($response->getBody(), true);
             //dd($data);
             return redirect('/newMateri');
-        } catch (RequestException $e) {
+        } catch (ClientException $e) {
             return redirect('/newMateri');
         }
     }

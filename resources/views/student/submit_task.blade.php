@@ -18,8 +18,9 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href ="style/css/sb-admin-2.css">
-    <link rel="stylesheet" href ="style/css/style.css">
+    <link rel="stylesheet" href="{{ asset('style/css/sb-admin-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/css/style.css') }}">
+
 
 </head>
 
@@ -172,20 +173,21 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-25">
+                                                    <label for="tkelas">Task</label>
+                                                </div>
+                                                <div class="col-75">
+                                                    <input type="text" name="task_id" value="{{$task_id}}" placeholder="Masukkan Kelas ">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-25">
                                                     <label for="tkelas">Kelas</label>
                                                 </div>
                                                 <div class="col-75">
                                                     <input type="text" name="kelas" placeholder="Masukkan Kelas ">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-25">
-                                                    <label for="dtugas">Nama Tugas</label>
-                                                </div>
-                                                <div class="col-75">
-                                                    <input type="text" name="namatugas" placeholder="Masukkan Nama Tugas">
-                                                </div>
-                                            </div>
+                                            
                                             <div class="row">
                                                 <div class="col-25">
                                                     <label for="tanggal">Upload Foto/File</label>
@@ -193,14 +195,6 @@
                                                 <div class="col-75">
                                                 <!-- <input type="text" id="file" name="file" placeholder="Masukkan File"> -->
                                                 <input type="file" id="file" name="file" multiple>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-25">
-                                                    <label for="ttglmasuk">Tanggal mengirimkan</label>
-                                                </div>
-                                                <div class="col-75">
-                                                    <input type="date" name="tanggalmasuk" placeholder="Masukkan Tanggal Masuk ">
                                                 </div>
                                             </div>
                                             <div class="row">

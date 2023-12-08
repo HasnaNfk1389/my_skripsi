@@ -42,10 +42,13 @@ Route::get('/welcome_admin', [App\Http\Controllers\AuthController::class, 'welco
 Route::get('/profile_admin', [App\Http\Controllers\AuthController::class, 'profile_admin'])->middleware('admin');
 
 //tugas
-Route::get('/tasks', [App\Http\Controllers\TugasController::class, 'tasks']);
+Route::get('/tasks', [App\Http\Controllers\TugasController::class, 'all_task']);
+Route::get('/task', [App\Http\Controllers\TugasController::class, 'all_task']);
+
+Route::get('/submit_tasks/{id}', [App\Http\Controllers\TugasController::class, 'submit_task']);
 Route::post('/postTugas', [App\Http\Controllers\TugasController::class, 'postTugas']);
 Route::get('/newTask', [App\Http\Controllers\TugasController::class, 'newTask']);
-Route::get('/all_task',[App\Http\Controllers\TugasController::class, 'all_task']);
+// Route::get('/all_task',[App\Http\Controllers\TugasController::class, 'all_task']);
 //Route::post('/postNewTugas',[App\Http\Controllers\TugasController::class,'postNewTugas']);
 Route::get('/add_task', [App\Http\Controllers\TugasController::class, 'add_task']);
 // Route::put('/editTugas', [AdminController::class, 'editTugas'])->middleware('user');
