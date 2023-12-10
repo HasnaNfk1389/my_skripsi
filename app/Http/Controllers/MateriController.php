@@ -6,6 +6,8 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use GuzzleHttp\Exception\ClientException;
+use Supabase\SupabaseClient;
+
 
 class MateriController extends Controller
 {
@@ -69,10 +71,18 @@ class MateriController extends Controller
 
     public function postNewMateri(Request $request)
     {
+        $supabaseUrl = "https://dvhbkrmcoralcuvkpoyh.supabase.co";
+        $supabaseAnonKey =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2aGJrcm1jb3JhbGN1dmtwb3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg4MTY0OTEsImV4cCI6MjAxNDM5MjQ5MX0.EVm69J6eHvVXksf0MpuYk_RtL8EWgsYRVtBage2fAjY";
+        $supabase = new SupabaseClient($supabaseUrl, $supabaseKey);
+        $bucketName = 'file_materi';
+        $filePath = 'C:\Users\Hasna Nadaafk\Downloads\notul hasna.txt';
+        $fileContents = file_get_contents($filePath);
+
         $nama_materi = $request->nama_materi;
         $user_id = $request->user_id;
         $deskripsi_materi = $request->deskripsi_materi;
-        $file = $request->file;
+        //$file = $request->file;
         // dd($nama_materi, $user_id, $deskripsi_materi, $file);
         try {
             $client = new Client();
@@ -87,6 +97,18 @@ class MateriController extends Controller
                     'file' => $file,
                 ],
             ]);
+            $response = $supabase
+            ->storage()
+            ->from($bucketName)
+            ->upload('C:\Users\Hasna Nadaafk\Downloads\notul hasna.txt', $fileContents); //ini masih percobaan
+            
+            if ($response->status() === 200) {
+                // File uploaded successfully
+                $url = $response->json()['data']['url'];
+                // Do something with the file URL
+            } else {
+                // Handle the error
+            }
             $data = json_decode($response->getBody(), true);
             //dd($data);
             return redirect('/newMateri');
@@ -94,7 +116,33 @@ class MateriController extends Controller
             return redirect('/newMateri');
         }
     }
+}
+        //    $error = $response->json()['error'];
+        //         // Handle the error accordingly
+        //     }
+            
+    // public function postNewMateri($file) {
+    //     $supabaseUrl = "https://dvhbkrmcoralcuvkpoyh.supabase.co";
+    //     $supabaseAnonKey =
+    //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2aGJrcm1jb3JhbGN1dmtwb3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg4MTY0OTEsImV4cCI6MjAxNDM5MjQ5MX0.EVm69J6eHvVXksf0MpuYk_RtL8EWgsYRVtBage2fAjY";
+    //     $supabase = new SupabaseClient($supabaseUrl, $supabaseKey);
+    //     $bucketName = 'file_materi';
+    //     $filePath = 'C:\Users\Hasna Nadaafk\Downloads\notul hasna.txt';
+    //     $fileContents = file_get_contents($filePath);
 
+    //     $response = $supabase
+    //         ->storage()
+    //         ->from($bucketName)
+    //         ->upload('C:\Users\Hasna Nadaafk\Downloads\notul hasna.txt', $fileContents);
+            
+    //         if ($response->status() === 200) {
+    //             // File uploaded successfully
+    //             $url = $response->json()['data']['url'];
+    //             // Do something with the file URL
+    //         } else {
+    //             // Handle the error
+    //         }
+    // } 
     //     public function postNewMateri(Request $request)
     //     {
     //         $nama_materi = $request->nama_materi;
@@ -138,4 +186,3 @@ class MateriController extends Controller
     //         }
     //     }
 
-}
