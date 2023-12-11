@@ -237,6 +237,85 @@
                     </div>
                     <!-- End of Main Content -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Begin Page Content -->
+ <div class="container-fluid">
+    <!-- Content Row -->
+    <div class="row">
+    </div>
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Area Chart -->
+        <div class="col-xl-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Materi Khusus {{session('loggedUserClass')}}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th name="user_id">No</th>
+                                    <th name="nama_materi">Judul Materi</th>
+                                    <th name="nama_materi">Deskripsi Materi</th>
+                                    <th>Lihat Materi</th>
+                  
+  
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($materiKelas[0]['payload'] as $materi)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ isset($materi['nama_materi']) ? $materi['nama_materi'] : 'N/A' }}</td>
+                                    <td>{{{ isset($materi['deskripsi_materi']) ? $materi['deskripsi_materi'] : 'N/A' }}}</td>
+                                    <td><a href="https://{{$materi['bucket_url']}}"><button class="button button2">Open</button></a></td>
+                       
+                                </tr>
+                                @endforeach
+                            </tbody>
+                         
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--  Content Row -->
+            <div class="row">
+                <!-- Content Column -->
+                <div class="col-lg-6 mb-4">
+                </div>
+                <div class="col-lg-6 mb-4">
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+
+
+
+
+
+
+
+
                     <!-- Footer -->
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">

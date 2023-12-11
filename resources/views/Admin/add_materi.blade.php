@@ -171,6 +171,17 @@
                                                 <div class="col-75">
                                                     <input type="text" id="deskripsi" name="deskripsi" placeholder="Masukan Deskripsi Materi">
                                                 </div>
+                     
+                     
+                                                <div class="form-group">
+                                                    <select class="form-select mb-2 rounded-full" name="kelas" aria-label="Default select example">
+                                                        <option selected value='All'>Preferensi Kelas</option>
+                                                        <option value="All">Semua Kelas</option>                                    <option value="XI-IPS">XI-IPS</option>
+                                                        <option value="XI-IPA">XI-IPA</option>
+                                                        <option value="XI-Agama">XI-Agama</option>
+                                                    </select>
+                                                    </div>
+                     
                                             </div>
 
                                             <!-- <div class="row">
@@ -240,6 +251,15 @@
                                                 <div class="col-75">
                                                     <input type="text" id="deskripsi" name="deskripsi" placeholder="Masukan Deskripsi Materi" value='{{$editMateri['deskripsi_materi']}}'>
                                                 </div>
+                    
+                                                <div class="form-group">
+                                                    <select class="form-select mb-2 rounded-full" name="kelas" aria-label="Default select example">
+                                                        <option selected value='{{$editMateri['kelas']}}'>Preferensi Kelas</option>
+                                                        <option value="All">Semua Kelas</option>                                    <option value="XI-IPS">XI-IPS</option>
+                                                        <option value="XI-IPA">XI-IPA</option>
+                                                        <option value="XI-Agama">XI-Agama</option>
+                                                    </select>
+                                                    </div>
                                             </div>
 
                                             <!-- <div class="row">
