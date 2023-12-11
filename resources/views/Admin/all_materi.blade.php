@@ -199,15 +199,21 @@
                                                     <th name="nama_materi">Judul Materi</th>
                                                     <th name="nama_materi">Deskripsi Materi</th>
                                                     <th>Lihat Materi</th>
+                                                    <th colspan="2" class="text-    center">Action</th>
+                  
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($materiData[0]['payload'] as $materi)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ isset($materi['judul']) ? $materi['judul'] : 'N/A' }}</td>
-                                                    <td>{{ isset($materi['deskripsi']) ? $materi['deskripsi'] : 'N/A' }}</td>
-                                                    <td><button class="button button2">Open</button></td>
+                                                    <td>{{ isset($materi['nama_materi']) ? $materi['nama_materi'] : 'N/A' }}</td>
+                                                    <td>{{{ isset($materi['deskripsi_materi']) ? $materi['deskripsi_materi'] : 'N/A' }}}</td>
+                                                    <td><a href="https://{{$materi['bucket_url']}}"><button class="button button2">Open</button></a></td>
+                                                    <td><a href="editMateri?nama_materi={{$materi['nama_materi']}}&deskripsi_materi={{$materi['deskripsi_materi']}}&user_id={{session('ID')}}&id={{$materi['id']}}&path={{$materi['file_metadata']['path']}}"><button class="button button2">Edit</button></a></td>
+                                                    <td><a href="deleteMateri?nama_materi={{$materi['nama_materi']}}&deskripsi_materi={{$materi['deskripsi_materi']}}&user_id={{session('ID')}}&id={{$materi['id']}}"><button class="button button2">Hapus</button></a></td>
+                                             
                                                 </tr>
                                                 @endforeach
                                             </tbody>

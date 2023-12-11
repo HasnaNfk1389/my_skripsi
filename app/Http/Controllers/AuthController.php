@@ -103,11 +103,13 @@ class AuthController extends Controller
                 $userId = $data[0]['payload']['id'];
                 $userDetailsResponse = $client->get("http://localhost:3000/getIDUser/{$userId}");
                 $userDetails = json_decode($userDetailsResponse->getBody(), true);
+                $id = $userDetails[0]['payload'][0]['id'];
                 $userName = $userDetails[0]['payload'][0]['name'];
                 $userEmail = $userDetails[0]['payload'][0]['email'];
                 $userRole = $userDetails[0]['payload'][0]['role'];
                 $userKelas = $userDetails[0]['payload'][0]['kelas'];
                 session(['loggedUserId' => $userId]);
+                session(['ID' => $id]);
                 session(['loggedUserName' => $userName]);
                 session(['loggedUserEmail' => $userEmail]);
                 session(['loggedUserRole' => $userRole]);

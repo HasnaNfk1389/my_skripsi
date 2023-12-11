@@ -214,9 +214,9 @@
                                                 @foreach($materiData[0]['payload'] as $materi)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ isset($materi['judul']) ? $materi['judul'] : 'N/A' }}</td>
-                                                    <td>{{ isset($materi['deskripsi']) ? $materi['deskripsi'] : 'N/A' }}</td>
-                                                    <td><button class="button button2">Open</button></td>
+                                                    <td>{{ isset($materi['nama_materi']) ? $materi['nama_materi'] : 'N/A' }}</td>
+                                                    <td>{{ isset($materi['deskripsi_materi']) ? $materi['deskripsi_materi'] : 'N/A' }}</td>
+                                                    <td><a href="storage/{{$materi['file_metadata']['path']}}"><button class="button button2">Open</button></a></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

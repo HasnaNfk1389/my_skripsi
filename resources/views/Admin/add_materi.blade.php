@@ -139,8 +139,23 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="container">
-                                        <form action="/store_materi" method="post">
+                                        @if($kode==='Tambah Materi')
+                                        <form action="/store_materi" method="post" enctype="multipart/form-data">
                                             @csrf
+                                            <div class="form-group">
+                                                
+
+
+
+                                                <script>
+            
+                                                </script>
+
+
+
+                                                <b>File Materi</b><br/>
+                                                <input type="file" name="file" >
+                                            </div>
                                             <div class="row">
                                                 <div class="col-25">
                                                     <label for="judul">Judul</label>
@@ -168,10 +183,87 @@
                                             </div> -->
                                             <br>
                                             <div class="row">
-                                                <button type="submit" name="submit" class="button button1">Submit</button>
-                                                <button class="button button2">Edit</button>
+
+                                                <button type="submit" name="submit" class="button button1">{{$kode}}</button>
+
+
+                                    
                                             </div>
                                         </form>
+
+                                        @endif
+
+
+
+                                        @if($kode==='Edit Materi')
+                                        <form action="/proses_edit_materi" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                
+
+
+
+                                                <script>
+            
+                                                </script>
+
+
+
+                                                <b>File Materi</b><br/>
+                                                <input type="file" name="file">
+                                                
+                                                
+                                                <a href='storage/{{$editMateri['path']}}'>Current File</a>
+
+                                                <input type="hidden" id="judulcurrent" name="judulcurrent" value='{{$editMateri['nama_materi']}}'>
+
+                                                <input type="hidden" id="deskripsicurrent" name="deskripsicurrent" value='{{$editMateri['deskripsi_materi']}}'>
+
+                                                <input type="hidden" id="idcurrent" name="idcurrent" value='{{$editMateri['id']}}'>
+                                                
+                                                <input type="hidden" id="useridcurrent" name="useridcurrent" value='{{$editMateri['user_id']}}'>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-25">
+                                                    <label for="judul">Judul</label>
+                                                </div>
+                                                <div class="col-75">
+                                                    
+                                                    <input type="text" id="judul" name="judul" placeholder="Masukan Judul (BAB)" value='{{$editMateri['nama_materi']}}'>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-25">
+                                                    <label for="deskripsi">Deskripsi Materi</label>
+                                                </div>
+                                                <div class="col-75">
+                                                    <input type="text" id="deskripsi" name="deskripsi" placeholder="Masukan Deskripsi Materi" value='{{$editMateri['deskripsi_materi']}}'>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="row">
+                                                <div class="col-25">
+                                                    <label for="tanggal">Upload</label>
+                                                </div>
+                                                <div class="col-75">
+                                                    <input type="file" id="myfile" name="myfile" multiple>
+                                                </div>
+                                            </div> -->
+                                            <br>
+                                            <div class="row">
+
+                                                <button type="submit" name="submit" class="button button1">{{$kode}}</button>
+
+
+                                    
+                                            </div>
+                                        </form>
+
+                                        @endif
+
+
+
                                     </div>
                                 </div>
                             </div>

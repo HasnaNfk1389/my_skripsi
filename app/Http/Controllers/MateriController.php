@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use GuzzleHttp\Exception\ClientException;
 use Supabase\SupabaseClient;
-
+use Illuminate\Support\Facades\Http;
 
 class MateriController extends Controller
 {
@@ -36,32 +36,192 @@ class MateriController extends Controller
             return redirect('admin/all_materi');
         }
     }
-
+    public function editMateri(Request $request)
+    {
+        $data = $request->query();
+        return view('admin/add_materi',['editMateri' => $data,'kode'=>'Edit Materi']);
+    }
     public function add_materi()
     {
-        return view('admin/add_materi');
+        return view('admin/add_materi', ['kode' => 'Tambah Materi']);
     }
-
-    public function store_materi(Request $request)
+    
+    public function delete_materi(Request $request)
     {
-        $judul = $request->judul;
-        $deskripsi = $request->deskripsi;
-        // dd($judul, $deskripsi);
+        $user = $request->query('user_id');
+        $judul = $request->query('nama_materi');
+        $deskripsi = $request->query('deskripsi_materi');
+        $id = $request->query('id');
+
+
+
         try {
             $client = new Client();
-            $response = $client->post('http://localhost:3000/materi', [
+            $client->post('http://localhost:3000/deleteMateri', [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
-                    'judul' => $judul,
-                    'deskripsi' => $deskripsi,
+                    'user_id' => $user,
+                    'nama_materi' => $judul,
+                    'deskripsi_materi' => $deskripsi,
+                    'id' => $id,
+
                 ],
             ]);
+            // return response()->json(['file' => $file_desc, 'message' => 'File uploaded successfully']);
+            return redirect('/all_materi');
+        } catch (ClientException $e) {
+            return redirect('/all_materi');
+    
+
+    }
+    }
+   
+    public function store_materi(Request $request)
+    {
+        
+        $judul = $request->judul;
+        $deskripsi = $request->deskripsi;
+        $user_id = session('ID');
+        $request->validate([
+            'file' => 'required|mimes:jpeg,png,jpg,pdf,txt|max:2048',
+        ]);
+        $file = $request->file('file');
+        $name = $file->hashName();
+        // $fileContent = file_get_contents($file->getRealPath()); //biasa
+        $fileContent = base64_encode(file_get_contents($file)); //jsonb
+
+        $file_desc = [
+            'name' => $name,
+            'file_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getClientMimeType(),
+            'path' => "materi/{$name}",
+            'disk' => config('filesystems.default'),
+            'size' => $file->getSize(),
+            // 'content' => $fileContent, //jsonb
+        ];
+
+        $upload = $file->storeAs('public/materi', $name);
+
+        // dd($judul, $deskripsi);
+        try {
+            $client = new Client();
+            $client->post('http://localhost:3000/materi', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'user_id' => $user_id,
+                    'nama_materi' => $judul,
+                    'deskripsi_materi' => $deskripsi,
+                    'file_desc' => $file_desc,
+                    //debug purpose
+                    // 'name' => $name,
+                    // 'file_name' => $file->getClientOriginalName(),
+                    // 'mime_type' => $file->getClientMimeType(),
+                    'path' => "materi/{$name}",
+                    // 'disk' => config('filesystems.default'),
+                    // 'size' => $file->getSize(),
+                    'file_content' => $fileContent,
+                ],
+            ]);
+            return response()->json(['file' => $file_desc, 'message' => 'File uploaded successfully', 'payload' => $fileContent]);
+            // return redirect('/all_materi');
+        } catch (ClientException $e) {
+            return redirect('/add_materi');
+    
+
+    }
+    
+
+    }
+    
+
+    public function edit_materi(Request $request)
+    {
+        $judulcurrent = $request->judulcurrent;
+        $deskripsicurrent = $request->deskripsicurrent;
+        $idcurrent = $request->idcurrent;
+        $useridcurrent = $request->useridcurrent;
+
+        $judul = $request->judul;
+        $deskripsi = $request->deskripsi;
+        $user_id = session('ID');
+        $request->validate([
+            'file' => 'sometimes|mimes:jpeg,png,jpg,pdf,txt|max:2048',
+        ]);
+        $file = $request->file('file');
+        if($file){
+        $name = $file->hashName();
+        // $fileContent = file_get_contents($file->getRealPath()); //biasa
+        $fileContent = base64_encode(file_get_contents($file)); //jsonb
+        $file_desc = [
+            'name' => $name,
+            'file_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getClientMimeType(),
+            'path' => "materi/{$name}",
+            'disk' => config('filesystems.default'),
+            'size' => $file->getSize(),
+            // 'content' => $fileContent, //jsonb
+            
+        ];
+        $upload = $file->storeAs('public/materi', $name);
+        }
+        
+
+        
+
+        
+
+        // dd($judul, $deskripsi);
+        try {
+            $client = new Client();
+            if($file){
+                $client->post('http://localhost:3000/editMateriWithFile', [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                    ],
+                    'json' => [
+                        'user_id' => $user_id,
+                        'nama_materi' => $judul,
+                        'deskripsi_materi' => $deskripsi,
+                        'file_desc' => $file_desc,
+                        'path' => "materi/{$name}",
+                        'file_content' => $fileContent,
+                        'useridcurrent' => $useridcurrent,
+                        'idcurrent' => $idcurrent,
+                        'deskripsicurrent' => $deskripsicurrent,
+                        'judulcurrent' => $judulcurrent,
+
+
+                    ],
+                ]);
+                }else{
+                        $client->post('http://localhost:3000/editMateri', [
+                            'headers' => [
+                                'Content-Type' => 'application/json',
+                            ],
+                            'json' => [
+                                'user_id' => $user_id,
+                                'nama_materi' => $judul,
+                                'deskripsi_materi' => $deskripsi,
+                                'useridcurrent' => $useridcurrent,
+                                'idcurrent' => $idcurrent,
+                                'deskripsicurrent' => $deskripsicurrent,
+                                'judulcurrent' => $judulcurrent,
+                            ],
+                        ]);
+                }
+        
             return redirect('/all_materi');
         } catch (ClientException $e) {
             return redirect('/add_materi');
-        }
+    
+
+    }
+    
+
     }
 
     public function newMateri()
@@ -74,7 +234,7 @@ class MateriController extends Controller
         $supabaseUrl = "https://dvhbkrmcoralcuvkpoyh.supabase.co";
         $supabaseAnonKey =
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2aGJrcm1jb3JhbGN1dmtwb3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg4MTY0OTEsImV4cCI6MjAxNDM5MjQ5MX0.EVm69J6eHvVXksf0MpuYk_RtL8EWgsYRVtBage2fAjY";
-        $supabase = new SupabaseClient($supabaseUrl, $supabaseKey);
+        $supabase = new SupabaseClient($supabaseUrl, $supabaseAnonKey);
         $bucketName = 'file_materi';
         $filePath = 'C:\Users\Hasna Nadaafk\Downloads\notul hasna.txt';
         $fileContents = file_get_contents($filePath);
@@ -94,7 +254,7 @@ class MateriController extends Controller
                     'nama_materi' => $nama_materi,
                     'user_id' => $user_id,
                     'deskripsi_materi' => $deskripsi_materi,
-                    'file' => $file,
+                    //'file' => $file,
                 ],
             ]);
             $response = $supabase

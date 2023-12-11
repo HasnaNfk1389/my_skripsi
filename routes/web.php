@@ -18,6 +18,7 @@ use App\Http\Controllers\MateriController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', [App\Http\Controllers\AuthController::class, 'login']);
 
 Route::get('/welcome', [App\Http\Controllers\AuthController::class, 'welcome'])->middleware('user');
 
@@ -56,11 +57,14 @@ Route::delete('/hapusTugas', [AdminController::class, 'hapusTugas'])->middleware
 
 
 // MATERI ROUTES ADMIN
-Route::get('/add_materi', [App\Http\Controllers\MateriController::class, 'add_materi']);
+Route::get('/add_materi', [App\Http\Controllers\MateriController::class, 'add_materi'])->middleware('admin');
 Route::post('/store_materi', [App\Http\Controllers\MateriController::class, 'store_materi'])->middleware('admin');
 Route::get('/all_materi', [App\Http\Controllers\MateriController::class, 'all_materi'])->middleware('admin');
 Route::get('/teacher_materi', [App\Http\Controllers\MateriController::class, 'newMateri'])->middleware('admin');
 Route::post('/postNewMateri', [MateriController::class, 'postNewMateri']);
+Route::get('/deleteMateri', [MateriController::class, 'delete_Materi'])->middleware('admin');
+Route::match(['get', 'post'],'/editMateri', [MateriController::class, 'editMateri'])->middleware('admin');
+Route::post('/proses_edit_materi', [MateriController::class, 'edit_materi'])->middleware('admin');
 
 // MATERI ROUTES USER
 Route::get('/materi', [App\Http\Controllers\MateriController::class, 'materi'])->middleware('user');
