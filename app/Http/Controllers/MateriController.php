@@ -15,12 +15,14 @@ class MateriController extends Controller
     {
         try {
             $client = new Client();
-            $response = $client->get('http://localhost:3000/all_materi');
+            $response = $client->get('http://localhost:3000/all_materi/All');
             $data = json_decode($response->getBody(), true);
-
-            return view('student/materi', ['materiData' => $data]);
+            $nama = sprintf('http://localhost:3000/all_materi/%s',session('loggedUserClass'));
+            $response_class = $client->get($nama);
+            $class = json_decode($response_class->getBody(), true);
+            return view('student/materi', ['materiData' => $data,'materiKelas' => $class]);
         } catch (\Exception $e) {
-            return redirect('student/all_materi');
+            return redirect('student/materi');
         }
     }
 
@@ -28,10 +30,13 @@ class MateriController extends Controller
     {
         try {
             $client = new Client();
-            $response = $client->get('http://localhost:3000/all_materi');
+            $response = $client->get('http://localhost:3000/all_materi/All');
             $data = json_decode($response->getBody(), true);
+            $nama = sprintf('http://localhost:3000/all_materi/%s',session('loggedUserClass'));
+            $response_class = $client->get($nama);
+            $class = json_decode($response_class->getBody(), true);
 
-            return view('admin/all_materi', ['materiData' => $data]);
+            return view('admin/all_materi', ['materiData' => $data, 'materiKelas' => $class]);
         } catch (\Exception $e) {
             return redirect('admin/all_materi');
         }
@@ -83,6 +88,7 @@ class MateriController extends Controller
         
         $judul = $request->judul;
         $deskripsi = $request->deskripsi;
+        $kelas = $request->kelas;
         $user_id = session('ID');
         $request->validate([
             'file' => 'required|mimes:jpeg,png,jpg,pdf,txt|max:2048',
@@ -124,6 +130,7 @@ class MateriController extends Controller
                     // 'disk' => config('filesystems.default'),
                     // 'size' => $file->getSize(),
                     'file_content' => $fileContent,
+                    'kelas' => $kelas,
                 ],
             ]);
             return response()->json(['file' => $file_desc, 'message' => 'File uploaded successfully', 'payload' => $fileContent]);
@@ -144,7 +151,7 @@ class MateriController extends Controller
         $deskripsicurrent = $request->deskripsicurrent;
         $idcurrent = $request->idcurrent;
         $useridcurrent = $request->useridcurrent;
-
+        $kelas = $request->kelas;
         $judul = $request->judul;
         $deskripsi = $request->deskripsi;
         $user_id = session('ID');
@@ -193,7 +200,7 @@ class MateriController extends Controller
                         'idcurrent' => $idcurrent,
                         'deskripsicurrent' => $deskripsicurrent,
                         'judulcurrent' => $judulcurrent,
-
+                        'kelas' => $kelas,
 
                     ],
                 ]);
@@ -210,6 +217,7 @@ class MateriController extends Controller
                                 'idcurrent' => $idcurrent,
                                 'deskripsicurrent' => $deskripsicurrent,
                                 'judulcurrent' => $judulcurrent,
+                                'kelas' => $kelas,
                             ],
                         ]);
                 }
