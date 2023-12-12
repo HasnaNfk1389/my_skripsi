@@ -221,11 +221,17 @@ class MateriController extends Controller
                             ],
                         ]);
                 }
-        
-            return redirect('/all_materi');
+                // return redirect('/show_materi');
+                $sessionRole = session('loggedUserRole');
+                
+                if($sessionRole =='teacher'){
+                    return redirect('/show_materi');
+                }else if($sessionRole == 'admin'){
+                    return redirect('/all_materi');}
+            
         } catch (ClientException $e) {
             return redirect('/add_materi');
-    
+            // ['error' => $e]
 
     }
     

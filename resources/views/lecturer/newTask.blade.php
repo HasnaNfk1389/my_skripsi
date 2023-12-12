@@ -153,12 +153,12 @@
                                         <form action="/postTugas" method="POST">
                                             @csrf
                                             <div class="row">
-                                            <input type="text" id="user_id" name="user_id" value="{{ session('loggedUserId') }}">
+                                            <input type="text" id="user_id" name="user_id" value="{{ session('loggedUserId') }}"readonly>
                                                 <div class="col-25">
                                                     <label for="tname">Nama Tugas</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" id="tname" name="nama_siswa" placeholder="Masukkan Nama Siswa">
+                                                    <input type="text" id="tname" name="nama_siswa" placeholder="Masukkan Judul Tugas">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -166,7 +166,7 @@
                                                     <label for="tkelas">Kelas</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" name="kelas" placeholder="Masukkan Kelas ">
+                                                    <input type="text" name="kelas" placeholder="Masukkan Kelas " value='{{session('loggedUserClass')}}'>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -174,7 +174,7 @@
                                                     <label for="dtugas">Deskripsi Tugas</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" name="namatugas" placeholder="Masukkan Nama Tugas">
+                                                    <textarea class="form-control" type="text" name="namatugas" id="namatugas" placeholder="Masukkan deskripsi sesuai perintah tugas yang perlu dikerjakan, seperti: Buat A, Hitung A, Kirim A."></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">

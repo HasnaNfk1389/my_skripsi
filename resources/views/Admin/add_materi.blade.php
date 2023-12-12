@@ -226,13 +226,13 @@
                                                 
                                                 <a href='storage/{{$editMateri['path']}}'>Current File</a>
 
-                                                <input type="hidden" id="judulcurrent" name="judulcurrent" value='{{$editMateri['nama_materi']}}'>
+                                                <input type="hidden" id="judulcurrent" name="judulcurrent" value='{{$editMateri['nama_materi']}}' readonly>
 
-                                                <input type="hidden" id="deskripsicurrent" name="deskripsicurrent" value='{{$editMateri['deskripsi_materi']}}'>
+                                                <input type="hidden" id="deskripsicurrent" name="deskripsicurrent" value='{{$editMateri['deskripsi_materi']}}'readonly>
 
-                                                <input type="hidden" id="idcurrent" name="idcurrent" value='{{$editMateri['id']}}'>
+                                                <input type="hidden" id="idcurrent" name="idcurrent" value='{{$editMateri['id']}}'readonly>
                                                 
-                                                <input type="hidden" id="useridcurrent" name="useridcurrent" value='{{$editMateri['user_id']}}'>
+                                                <input type="hidden" id="useridcurrent" name="useridcurrent" value='{{$editMateri['user_id']}}'readonly>
 
                                             </div>
                                             <div class="row">
