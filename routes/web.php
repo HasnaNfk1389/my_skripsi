@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MateriController;
@@ -47,7 +48,6 @@ Route::get('/tasks', [App\Http\Controllers\TugasController::class, 'all_task']);
 Route::get('/task', [App\Http\Controllers\TugasController::class, 'all_task']);
 
 Route::get('/submit_tasks/{id}', [App\Http\Controllers\TugasController::class, 'submit_task']);
-Route::post('/postTugas', [App\Http\Controllers\TugasController::class, 'postTugas']);
 Route::get('/newTask', [App\Http\Controllers\TugasController::class, 'newTask']);
 // Route::get('/all_task',[App\Http\Controllers\TugasController::class, 'all_task']);
 //Route::post('/postNewTugas',[App\Http\Controllers\TugasController::class,'postNewTugas']);
@@ -72,5 +72,7 @@ Route::get('/add_materi', [App\Http\Controllers\MateriController::class, 'add_ma
 Route::post('/proses_edit_materi', [MateriController::class, 'edit_materi'])->middleware('teacher');
 Route::get('/deleteMateri', [MateriController::class, 'delete_Materi'])->middleware('teacher');
 Route::post('/store_materi', [App\Http\Controllers\MateriController::class, 'store_materi'])->middleware('teacher');
+Route::post('/postTugas', [App\Http\Controllers\TugasController::class, 'postTugas'])->Middleware('teacher');
+
 
 

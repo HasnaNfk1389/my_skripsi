@@ -176,7 +176,7 @@
                                                     <label for="tkelas">Task</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" name="task_id" value="{{$task_id}}" placeholder="Masukkan Kelas ">
+                                                    <input type="text" name="task_id" value="{{$task_id}}" placeholder="Masukkan Kelas " readonly>
                                                 </div>
                                             </div>
                                             <div class="row">

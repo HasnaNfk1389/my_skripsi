@@ -220,7 +220,7 @@
                                                     <td>{{ isset($task['kelas']) ? $task['kelas'] : 'N/A' }}</td>
                                                     <td>{{ isset($task['namatugas']) ? $task['namatugas'] : 'N/A' }}</td>
                                                     <td>{{ isset($task['desk_tugas']) ? $task['desk_tugas'] : 'N/A' }}</td>
-                                                    <td>FILE</td>
+                                                    <td><a href='{{$task['bucket_url']}}'>FILE</a></td>
                                                     <td>{{ isset($task['tgl_kumpul']) ? $task['tgl_kumpul'] : 'N/A' }}</td>
                                                     <td>{{ isset($result_status[$loop->index]) ? $result_status[$loop->index] : 'Belum Mengumpulkan' }}</td>
                                                     <td><a class="button button1" href="/submit_tasks/{{$task['id']}}">Kirim Tugas</a></td>

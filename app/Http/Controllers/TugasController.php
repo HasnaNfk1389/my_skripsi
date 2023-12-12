@@ -42,11 +42,32 @@ class TugasController extends Controller
     public function postTugas(Request $request) 
     {
         $user_id = session('loggedUserId');
-        $nama_siswa = $request->nama_siswa;
+        $nama_siswa = $request->tname;
         $kelas = $request->kelas;
-        $status = $request->status;
+        $desk_tugas = $request->namatugas;
+        // $status = $request->status;
+        $tenggat = $request->tanggalmasuk;
         $tanggalmasuk = date('Y-m-d H:i:s');
-        $task_id = $request->task_id;
+        // $task_id = $request->task_id;
+
+        $request->validate([
+            'file' => 'sometimes|mimes:jpeg,png,jpg,pdf,txt|max:2048',
+        ]);
+        $file = $request->file('file');
+        if($file){
+        $name = $file->hashName();
+        // $fileContent = file_get_contents($file->getRealPath()); //biasa
+        $fileContent = base64_encode(file_get_contents($file)); //jsonb
+        $file_desc = [
+            'name' => $name,
+            'file_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getClientMimeType(),
+            'path' => "materi/{$name}",
+            'disk' => config('filesystems.default'),
+            'size' => $file->getSize(),
+            // 'content' => $fileContent, //jsonb
+            
+        ];
 
         try {
             $client = new Client();
@@ -56,11 +77,16 @@ class TugasController extends Controller
                 ],
                 'json' => [
                     'user_id' => $user_id,
-                    'nama_siswa' => $nama_siswa,
+                    'namatugas' => $nama_siswa,
                     'kelas' => $kelas,
-                    'status' => $status,
+                    'tenggat' => $tenggat,
                     'tanggalmasuk' => $tanggalmasuk,
-                    'task_id' => $task_id,
+                    'desk_tugas' => $desk_tugas,
+                    'file_content' => $fileContent,
+                    'file_desc' => $file_desc,
+
+
+                    // 'task_id' => $task_id,
                 ],
             ]);
             $data = json_decode($response->getBody(), true);
@@ -69,6 +95,7 @@ class TugasController extends Controller
             return redirect('/tasks');
         }
     }
+}
 
     public function all_task()
     {
