@@ -57,7 +57,7 @@ Route::delete('/hapusTugas', [AdminController::class, 'hapusTugas'])->middleware
 
 
 // MATERI ROUTES ADMIN
-Route::post('/store_materi', [App\Http\Controllers\MateriController::class, 'store_materi'])->middleware('admin');
+
 Route::get('/all_materi', [App\Http\Controllers\MateriController::class, 'all_materi'])->middleware('admin');
 Route::get('/teacher_materi', [App\Http\Controllers\MateriController::class, 'newMateri'])->middleware('admin');
 Route::post('/postNewMateri', [MateriController::class, 'postNewMateri']);
@@ -71,5 +71,6 @@ Route::match(['get'],'/editMateri', [MateriController::class, 'editMateri'])->mi
 Route::get('/add_materi', [App\Http\Controllers\MateriController::class, 'add_materi'])->middleware('teacher');
 Route::post('/proses_edit_materi', [MateriController::class, 'edit_materi'])->middleware('teacher');
 Route::get('/deleteMateri', [MateriController::class, 'delete_Materi'])->middleware('teacher');
+Route::post('/store_materi', [App\Http\Controllers\MateriController::class, 'store_materi'])->middleware('teacher');
 
 
