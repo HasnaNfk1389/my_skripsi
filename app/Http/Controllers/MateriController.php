@@ -133,8 +133,15 @@ class MateriController extends Controller
                     'kelas' => $kelas,
                 ],
             ]);
-            return response()->json(['file' => $file_desc, 'message' => 'File uploaded successfully', 'payload' => $fileContent]);
+            // return response()->json(['file' => $file_desc, 'message' => 'File uploaded successfully', 'payload' => $fileContent]);
             // return redirect('/all_materi');
+            $sessionRole = session('loggedUserRole');
+                
+            if($sessionRole =='teacher'){
+                return redirect('/show_materi');
+            }else if($sessionRole == 'admin'){
+                return redirect('/all_materi');}
+                
         } catch (ClientException $e) {
             return redirect('/add_materi');
     
