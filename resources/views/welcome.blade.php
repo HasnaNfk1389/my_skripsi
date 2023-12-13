@@ -244,7 +244,7 @@
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: {{$completion}}%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{isset($completion) ? $completion : ''}}%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -283,16 +283,17 @@
                                                             @if($loop->last)
                                                             @php 
                                                             $countScores = $loop->iteration; 
+                                                            $scores=$scores/$countScores;
                                                             @endphp
                                                             @endif
 
+                                                            {{isset($scores) ? $scores :''}}
                                                             
                                                         @endif
                                                     @endforeach
 
 
                                                         
-                                                        {{$scores=$scores/$countScores}}
                                                         
                                                         
                                                     </div>
@@ -300,7 +301,7 @@
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: {{$scores}}%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{isset($scores) ? $scores :''}}%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
