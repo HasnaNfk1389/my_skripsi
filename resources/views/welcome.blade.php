@@ -237,7 +237,9 @@
                                                         @endif
                                                         @endif
                                                         @endforeach
+                                                        @if(isset($prog))
                                                         {{$completion=round($prog/$countTask*100)}}%</div>
+                                                        @endif
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
