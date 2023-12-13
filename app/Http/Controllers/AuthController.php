@@ -18,7 +18,15 @@ class AuthController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        $client = new Client();
+        $response = $client->get(sprintf('http://localhost:3000/allSubmittedTask/%s/%s',session('loggedUserClass'),session('loggedUserId')));
+        $submittedTask = json_decode($response->getBody(), true);
+
+        $client = new Client();
+        $response = $client->get(sprintf('http://localhost:3000/allTask/%s',session('loggedUserClass')));
+        $allTask = json_decode($response->getBody(), true);
+        
+        return view('welcome',['submittedTask'=>$submittedTask,'allTask'=>$allTask]);
     }
 
     public function regis()

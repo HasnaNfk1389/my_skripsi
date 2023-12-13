@@ -75,7 +75,12 @@ class MateriController extends Controller
                 ],
             ]);
             // return response()->json(['file' => $file_desc, 'message' => 'File uploaded successfully']);
-            return redirect('/all_materi');
+            $sessionRole = session('loggedUserRole');
+                
+            if($sessionRole =='teacher'){
+                return redirect('/show_materi');
+            }else if($sessionRole == 'admin'){
+                return redirect('/all_materi');}
         } catch (ClientException $e) {
             return redirect('/all_materi');
     

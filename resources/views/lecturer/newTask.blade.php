@@ -50,6 +50,11 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
+                <a class="nav-link" href="/tasks">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    <span>Tasks</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/newTask">
                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     <span>Tugas Baru</span></a>
@@ -153,12 +158,12 @@
                                         <form action="/postTugas" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
-                                            <input type="text" id="user_id" name="user_id" value="{{ session('loggedUserId') }}"readonly>
+                                            <input type="text" id="task_id" name="task_id" value="{{isset($editTugas['task_id']) ? $editTugas['task_id'] : ''}}"readonly>
                                                 <div class="col-25">
                                                     <label for="tname">Nama Tugas</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" id="tname" name="tname" placeholder="Masukkan Judul Tugas">
+                                                    <input type="text" id="tname" name="tname" placeholder="Masukkan Judul Tugas" value='{{isset($editTugas['judul']) ? $editTugas['judul'] : ''}}'>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -174,7 +179,7 @@
                                                     <label for="dtugas">Deskripsi Tugas</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <textarea class="form-control" type="text" name="namatugas" id="namatugas" placeholder="Masukkan deskripsi sesuai perintah tugas yang perlu dikerjakan, seperti: Buat A, Hitung A, Kirim A."></textarea>
+                                                    <textarea class="form-control" type="text" name="namatugas" id="namatugas" placeholder="Masukkan deskripsi sesuai perintah tugas yang perlu dikerjakan, seperti: Buat A, Hitung A, Kirim A.">{{isset($editTugas['deskripsi']) ? $editTugas['deskripsi'] : ''}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -191,7 +196,7 @@
                                                     <label for="ttglmasuk">Tenggat pengumpulan</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="date" name="tanggalmasuk" id="tanggalmasuk" placeholder="Masukkan Tanggal Masuk ">
+                                                    <input type="date" name="tanggalmasuk" id="tanggalmasuk" placeholder="Masukkan Tanggal Masuk " value='{{isset($editTugas['tenggat']) ? $editTugas['tenggat'] : ''}}'>
                                                 </div>
                                             </div>
                                             <div class="row">

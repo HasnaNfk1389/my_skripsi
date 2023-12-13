@@ -45,7 +45,7 @@ Route::get('/profile_admin', [App\Http\Controllers\AuthController::class, 'profi
 
 //tugas
 Route::get('/tasks', [App\Http\Controllers\TugasController::class, 'all_task']);
-Route::get('/task', [App\Http\Controllers\TugasController::class, 'all_task']);
+Route::get('/lectureTasks', [App\Http\Controllers\TugasController::class, 'all_task']);
 
 Route::get('/submit_tasks/{id}', [App\Http\Controllers\TugasController::class, 'submit_task']);
 Route::get('/newTask', [App\Http\Controllers\TugasController::class, 'newTask']);
@@ -53,7 +53,7 @@ Route::get('/newTask', [App\Http\Controllers\TugasController::class, 'newTask'])
 //Route::post('/postNewTugas',[App\Http\Controllers\TugasController::class,'postNewTugas']);
 Route::get('/add_task', [App\Http\Controllers\TugasController::class, 'add_task']);
 // Route::put('/editTugas', [AdminController::class, 'editTugas'])->middleware('user');
-Route::delete('/hapusTugas', [AdminController::class, 'hapusTugas'])->middleware('user');
+Route::get('/hapusTugas', [App\Http\Controllers\TugasController::class, 'hapusTugas'])->middleware('user');
 
 
 // MATERI ROUTES ADMIN
@@ -73,6 +73,12 @@ Route::post('/proses_edit_materi', [MateriController::class, 'edit_materi'])->mi
 Route::get('/deleteMateri', [MateriController::class, 'delete_Materi'])->middleware('teacher');
 Route::post('/store_materi', [App\Http\Controllers\MateriController::class, 'store_materi'])->middleware('teacher');
 Route::post('/postTugas', [App\Http\Controllers\TugasController::class, 'postTugas'])->Middleware('teacher');
+Route::post('/studentPostTugas', [App\Http\Controllers\TugasController::class, 'studentPostTugas'])->Middleware('user');
+Route::post('/deleteTask', [App\Http\Controllers\TugasController::class, 'lectureDeleteTask'])->Middleware('teacher');
+Route::get('/deleteTask', [App\Http\Controllers\TugasController::class, 'hapusTugas'])->middleware('teacher');
+Route::post('/addScore', [App\Http\Controllers\TugasController::class, 'addScore'])->middleware('teacher');
+
+
 
 
 

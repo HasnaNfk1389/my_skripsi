@@ -48,11 +48,20 @@
             </li>
 
             <!-- Nav Item - Tables -->
+            @if(session('loggedUserRole')==='admin')
             <li class="nav-item">
                 <a class="nav-link" href="/add_tasks">
                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     <span>Tugas Baru</span></a>
             </li>
+            @endif
+            @if(session('loggedUserRole')==='teacher')
+            <li class="nav-item">
+                <a class="nav-link" href="/newTask">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    <span>Tugas Baru</span></a>
+            </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

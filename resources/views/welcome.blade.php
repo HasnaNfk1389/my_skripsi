@@ -218,12 +218,31 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        @foreach($submittedTask[0]['payload'] as $progress)
+                                                        @if(isset($progress))
+                                                        @if($loop->last)
+                                                        <?php $prog = $loop->iteration;?>
+                                                        
+                                                        @endif
+                                                        @endif
+                                                        @endforeach
+
+
+                                                        @foreach($allTask[0]['payload'] as $task)
+                                                        @if(isset($task))
+                                                        @if($loop->last)
+                                                        <?php $countTask = $loop->iteration;?>
+                                                        
+                                                        @endif
+                                                        @endif
+                                                        @endforeach
+                                                        {{$completion=round($prog/$countTask*100)}}%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{$completion}}%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -247,12 +266,39 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+
+                                                        @php
+                                                        $scores = 0;
+                                                    @endphp
+                                                    
+                                                    @foreach($submittedTask[0]['payload'] as $progress)
+                                                        @if(isset($progress['score']))
+                                                            @php
+                                                            ($scores += $progress['score'])
+                                                            @endphp
+
+                                                            @if($loop->last)
+                                                            @php 
+                                                            $countScores = $loop->iteration; 
+                                                            @endphp
+                                                            @endif
+
+                                                            
+                                                        @endif
+                                                    @endforeach
+
+
+                                                        
+                                                        {{$scores=$scores/$countScores}}
+                                                        
+                                                        
+                                                    </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{$scores}}%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
