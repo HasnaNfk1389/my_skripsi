@@ -121,8 +121,22 @@
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                               
-                                <span class="badge badge-danger badge-counter">3+</span>
+                               @if(isset($allTask[0]['payload']))
+                                <span class="badge badge-danger badge-counter">
+                                    @foreach($allTask[0]['payload'] as $task)
+
+                                    @if($loop->last)
+                                    @php 
+                                    $countTask = $loop->iteration;
+                                    
+                                    @endphp
+                                    {{$countTask}}
+                                    @endif
+                                    
+                                    @endforeach
+
+                                </span>
+                                @endif
                             </a>
                            
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -130,43 +144,26 @@
                                 <h6 class="dropdown-header">
                                     Notification
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
+                                
+                                    @foreach($allTask[0]['payload'] as $task)
+                                    @if(isset($task))
+
+                                    <a class="dropdown-item d-flex align-items-center" href="/submit_tasks/{{$task['id']}}">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
                                         </div>
-                                    </div>
                                     <div>
-                                        <div class="small text-gray-500">17 November 2022</div>
-                                        <div class="small text-gray-500">08:30 WIB</div>
-                                        <span class="font-weight-bold">Ada tugas yang harus dikumpulkan!</span>
+                                        <div class="small text-gray-500">{{$task['tgl_kumpul']}}</div>
+                                        <div class="small text-gray-500">{{$task['id']}}</div>
+                                        <span class="font-weight-bold">{{$task['namatugas']}}</span>
                                     </div>
+                                    @endif
+                                    @endforeach
+                                    
                                 </a>
-                               <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                    <div class="small text-gray-500">17 November 2022</div>
-                                        <div class="small text-gray-500">08:30 WIB</div>
-                                        <span class="font-weight-bold">Ada tugas yang harus dikumpulkan!</span>
-                                    </div>
-                                </a>
-                               <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                    <div class="small text-gray-500">17 November 2022</div>
-                                        <div class="small text-gray-500">08:30 WIB</div>
-                                        <span class="font-weight-bold">Ada tugas yang harus dikumpulkan!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="/tasks">Show All Alerts</a>
                             </div>
                         </li>
 
@@ -238,13 +235,14 @@
                                                         @endif
                                                         @endforeach
                                                         @if(isset($prog))
-                                                        {{$completion=round($prog/$countTask*100)}}%</div>
-                                                        @endif
-                                                </div>
+                                                        {{$completion=round($prog/$countTask*100)}}%
+                                                        @endif                                                
+                                                        </div>
+                                                        </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: {{isset($completion) ? $completion : ''}}%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{isset($completion) ? $completion :0}}%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -283,15 +281,19 @@
                                                             @if($loop->last)
                                                             @php 
                                                             $countScores = $loop->iteration; 
-                                                            $scores=$scores/$countScores;
-                                                            @endphp
+
+                                                        $scores=round($scores/$countScores);
+                                                            
+@endphp
                                                             @endif
 
-                                                            {{isset($scores) ? $scores :''}}
+
+
                                                             
                                                         @endif
                                                     @endforeach
 
+								{{isset($scores) ? $scores : 'belum dinilai'}}
 
                                                         
                                                         
@@ -301,7 +303,7 @@
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: {{isset($scores) ? $scores :''}}%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{isset($scores) ? $scores : ''}}%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
