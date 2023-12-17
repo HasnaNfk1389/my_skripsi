@@ -23,9 +23,9 @@
     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bell fa-fw"></i>
-       @if(isset($allTask[0]['payload']))
+       @if(isset($submitTask[0]['payload']))
         <span class="badge badge-danger badge-counter">
-            @foreach($allTask[0]['payload'] as $task)
+            @foreach($submitTask[0]['payload'] as $task)
 
             @if($loop->last)
             @php 
@@ -47,19 +47,19 @@
             Notification
         </h6>
         
-            @foreach($allTask[0]['payload'] as $task)
+            @foreach($submitTask[0]['payload'] as $task)
             @if(isset($task))
 
-            <a class="dropdown-item d-flex align-items-center" href="/submit_tasks/{{$task['id']}}">
+            <a class="dropdown-item d-flex align-items-center" href="{{$task['bucket_url']}}">
                 <div class="mr-3">
                     <div class="icon-circle bg-primary">
                         <i class="fas fa-file-alt text-white"></i>
                     </div>
                 </div>
             <div>
-                <div class="small text-gray-500">{{$task['tgl_kumpul']}}</div>
-                <div class="small text-gray-500">{{$task['id']}}</div>
-                <span class="font-weight-bold">{{$task['namatugas']}}</span>
+                <div class="small text-gray-500">{{$task['tanggalmasuk']}}</div>
+                <div class="small text-gray-500">{{$task['nama_siswa']}}</div>
+                <span class="font-weight-bold">{{$task['task_id']}}</span>
             </div>
             @endif
             @endforeach

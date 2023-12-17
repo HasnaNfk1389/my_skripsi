@@ -26,7 +26,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="/materi">
+        <a class="nav-link" href="/show_materi">
             <i class="fas fa-book fa-2x text-gray-300"></i>
             <span>Materi</span></a>
     </li>
@@ -37,6 +37,13 @@
             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
             <span>Tasks</span></a>
     </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="/newTask">
+                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                <span>New Task</span></a>
+        </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

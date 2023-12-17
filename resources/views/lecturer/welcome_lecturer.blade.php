@@ -28,8 +28,14 @@
 
         <!-- Sidebar -->
         
-@include('layout.lecturerMenu')     
-@include('layout.lecturerNotification')
+        @if(session('loggedUserRole')==='teacher')
+        @include('layout.lecturerMenu')     
+        @include('layout.lecturerNotification')
+        @endif
+        @if(session('loggedUserRole')==='user')
+        @include('layout.studentmenu')     
+        @include('layout.notification')
+        @endif
 
 
                 <!-- Begin Page Content -->
@@ -71,7 +77,12 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-50">
-                                                <h6>New</h6>
+                                                <h6>Layanan Penyimpanan Tugas Siswa Online merupakan 
+                                                    suatu platform yang dirancang untuk memfasilitasi pengelolaan tugas-tugas 
+                                                    siswa secara efisien dan terintegrasi melalui layanan web. 
+                                                    Sistem ini bertujuan untuk menyediakan solusi berbasis teknologi 
+                                                    untuk membantu siswa, guru, dan administrator sekolah dalam 
+                                                    pengelolaan tugas dan pencapaian akademis.</h6>
 
                                             </div>
 

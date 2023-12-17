@@ -30,8 +30,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-@include('layout.studentmenu')     
-@include('layout.notification')
+        @if(session('loggedUserRole')==='teacher')
+        @include('layout.lecturerMenu')     
+        @include('layout.lecturerNotification')
+        @endif
+        @if(session('loggedUserRole')==='user')
+        @include('layout.studentmenu')     
+        @include('layout.notification')
+        @endif
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

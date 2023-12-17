@@ -348,15 +348,9 @@ public function addScore(Request $request){
 
         }
 
-        $client = new Client();
-        $response = $client->get(sprintf('http://localhost:3000/allSubmittedTask/%s/%s',session('loggedUserClass'),session('loggedUserId')));
-        $submittedTask = json_decode($response->getBody(), true);
 
-        $client = new Client();
-        $response = $client->get(sprintf('http://localhost:3000/allTask/%s',session('loggedUserClass')));
-        $allTask = json_decode($response->getBody(), true);
 
-        return view('student/all_task', ['allTask' => $allTask, 'taskData' => $filteredtask, 'result_status' => $filteredtaskStudent, 'submittedTask' => $submittedTask]);
+        return view('student/all_task', ['taskData' => $filteredtask, 'result_status' => $filteredtaskStudent, 'submittedTask' => $submittedTask]);
     }
 
     public function submit_task($id) {

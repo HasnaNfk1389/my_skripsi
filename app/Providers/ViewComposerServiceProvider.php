@@ -25,9 +25,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             if (Session::has('loggedUserClass')) {
                 $client = new \GuzzleHttp\Client();
+                $response = $client->get(sprintf('http://localhost:3000/allSubmittedTask/%s',session('loggedUserClass')));
+                $submittedTask = json_decode($response->getBody(), true);
+
+
+                $client = new \GuzzleHttp\Client();
                 $response = $client->get(sprintf('http://localhost:3000/allTask/%s', Session::get('loggedUserClass')));
                 $allTask = json_decode($response->getBody(), true);
-                $view->with('allTask', $allTask);
+                $view->with('allTask', $allTask)
+
+                -> with('submitTask', $submittedTask);
             }
         });
         //
