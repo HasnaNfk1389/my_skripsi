@@ -161,8 +161,48 @@ class AuthController extends Controller
 
     public function profile()
     {
+
         return view('student/profile');
     }
+
+
+
+
+
+
+    public function profileUpdate(Request $request)
+    {
+        $username = $request->username;
+        $phone = $request->phone;
+        $password = $request->password;
+        $userId = session('loggedUserId');
+
+        // dd($judul, $deskripsi);
+        try {
+            $client = new Client();
+            $response = $client->post('http://localhost:3000/profileUpdate', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'username' => $username,
+                    'phone' => $phone,
+                    'password' => $password,
+                    'userid' => $userId,
+                ],
+            ]);
+            return redirect('/profile');
+        } catch (ClientException $e) {
+            return redirect('/profile');
+        }
+    }
+
+
+
+
+
+
+
 
     public function welcome_lecturer()
     {

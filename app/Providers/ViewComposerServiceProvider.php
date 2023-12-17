@@ -32,9 +32,14 @@ class ViewComposerServiceProvider extends ServiceProvider
                 $client = new \GuzzleHttp\Client();
                 $response = $client->get(sprintf('http://localhost:3000/allTask/%s', Session::get('loggedUserClass')));
                 $allTask = json_decode($response->getBody(), true);
-                $view->with('allTask', $allTask)
 
-                -> with('submitTask', $submittedTask);
+                $client = new \GuzzleHttp\Client();
+                $response = $client->get(sprintf('http://localhost:3000/checkUser/%s',session('loggedUserId')));
+                $userInfo = json_decode($response->getBody(), true);
+
+                $view->with('allTask', $allTask)
+                -> with('submitTask', $submittedTask)
+                -> with('userInfo', $userInfo);
             }
         });
         //

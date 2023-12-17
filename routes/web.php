@@ -78,6 +78,9 @@ Route::post('/deleteTask', [App\Http\Controllers\TugasController::class, 'lectur
 Route::get('/deleteTask', [App\Http\Controllers\TugasController::class, 'hapusTugas'])->middleware('teacher');
 Route::post('/addScore', [App\Http\Controllers\TugasController::class, 'addScore'])->middleware('teacher');
 
+Route::post('/action_page', [App\Http\Controllers\AuthController::class, 'profileUpdate']);
+
+
 
 
 

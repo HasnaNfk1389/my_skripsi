@@ -52,13 +52,17 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="container">
-                                        <form action="/action_page.php">
+                                        <form action="/action_page" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @foreach($userInfo[0]['payload'] as $user)
+
                                             <div class="row">
                                                 <div class="col-25">
+                    
                                                     <label for="fname">Nama Lengkap</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" id="fname" name="firstname" placeholder="Masukkan Nama Lengkap">
+                                                    <input type="text" id="fname" name="fullname" placeholder="Nama Lengkap..." value="{{$user['name']}}" readonly>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -66,7 +70,25 @@
                                                     <label for="lname">Email</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="text" id="lname" name="lastname" placeholder="Masukkan Email">
+                                                    <input type="text" id="lname" name="email" placeholder="Email.." value="{{session('loggedUserEmail')}}" readonly>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row">
+                                                <div class="col-25">
+                                                    <label for="Address">Alamat</label>
+                                                </div>
+                                                <div class="col-75">
+                                                    <input type="text" id="lname" name="lastname" placeholder="Alamat..">
+                                                </div>
+                                            </div> -->
+                                            <div class="row">
+                                                <div class="col-25">
+                                                    <label for="phone">Telephone</label>
+                                                </div>
+                                                <div class="col-75">
+
+                                                    
+                                                    <input type="number" id="lname" name="phone" placeholder="No. Telp.." value="{{$user['phone']}}">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -74,7 +96,7 @@
                                                     <label for="name">Username</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="number" id="lname" name="lastname" placeholder="Username">
+                                                    <input type="text" id="lname" name="username" placeholder="Username" value="{{$user['name']}}">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -82,30 +104,11 @@
                                                     <label for="password">Password</label>
                                                 </div>
                                                 <div class="col-75">
-                                                    <input type="password" id="lname" name="lastname" placeholder="Password">
+                                                    <input type="password" id="lname" name="password" placeholder="Password" value="{{$user['password']}}">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-25">
-                                                    <label for="name">Login Sebagai</label>
-                                                </div>
-                                                <div class="col-75">
-                                                    <select id="roleselect" name="role" class="form-control">
-                                                        <option selected disabled>Choose...</option>
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="Lecturer">Lecturer</option>
-                                                        <option value="Student">Student</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-25">
-                                                    <label for="file">Foto</label>
-                                                </div>
-                                                <div class="col-75">
-                                                    <input type="file" id="myfile" name="myfile" multiple>
-                                                </div>
-                                            </div>
+                                            
+                                            @endforeach
                                             <br>
                                             <div class="row">
                                                 <button class="button button1">Submit</button>
