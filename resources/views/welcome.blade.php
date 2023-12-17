@@ -30,10 +30,10 @@
 
         <!-- Sidebar -->
 
-        @if(session('loggedUserRole')==='user')
-        @include('layout.studentmenu')
-        @endif
-        @include('layout.notification')
+@if(session('loggedUserRole')==='user')
+@include('layout.studentmenu')
+@endif
+@include('layout.notification')
                 
                 <div class="row">
                     <div class ="container">
