@@ -27,8 +27,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('layout.studentmenu')     
-@include('layout.notification')
+@include('layout.lecturerMenu')     
+@include('layout.lecturerNotification')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
