@@ -12,32 +12,7 @@ class TugasController extends Controller
     {
         return view('student/tasks');
     }
-    // public function postTugas()
-    // {
-    //     $user_id = $request->user_id;
-    //     $nama_siswa = $request->nama_siswa;
-    //     $kelas = $request->kelas;
-    //     $namatugas = $request->namatugas;
-    //     $tanggalmasuk = $request->tanggalmasuk;
-    //     try {
-    //         $client = new Client();
-    //         $response = $client->post('http://localhost:3000/tugas', [
-    //             'headers' => [
-    //                 'Content-Type' => 'application/json',
-    //             ],
-    //             'json' => [
-    //                 'user_id' => $user_id,
-    //                 'nama_siswa' => $nama_siswa,
-    //                 'kelas' => $kelas,
-    //                 'namatugas' => $namatugas,
-    //                 'tanggalmasuk' => $tanggalmasuk,
-    //             ],
-    //         ]);
-    //         return redirect('/');
-    //     } catch (RequestException $e) {
-    //         return redirect('/tasks');
-    //     }
-    // }
+    
 
     public function postTugas(Request $request) 
     {
@@ -373,7 +348,15 @@ public function addScore(Request $request){
 
         }
 
-        return view('student/all_task', ['taskData' => $filteredtask, 'result_status' => $filteredtaskStudent, 'submittedTask' => $submittedTask]);
+        $client = new Client();
+        $response = $client->get(sprintf('http://localhost:3000/allSubmittedTask/%s/%s',session('loggedUserClass'),session('loggedUserId')));
+        $submittedTask = json_decode($response->getBody(), true);
+
+        $client = new Client();
+        $response = $client->get(sprintf('http://localhost:3000/allTask/%s',session('loggedUserClass')));
+        $allTask = json_decode($response->getBody(), true);
+
+        return view('student/all_task', ['allTask' => $allTask, 'taskData' => $filteredtask, 'result_status' => $filteredtaskStudent, 'submittedTask' => $submittedTask]);
     }
 
     public function submit_task($id) {

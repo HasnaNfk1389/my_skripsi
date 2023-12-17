@@ -145,7 +145,18 @@ class AuthController extends Controller
 
     public function download()
     {
-        return view('student/download');
+
+        $client = new Client();
+        $response = $client->get(sprintf('http://localhost:3000/allSubmittedTask/%s/%s',session('loggedUserClass'),session('loggedUserId')));
+        $submittedTask = json_decode($response->getBody(), true);
+
+        $client = new Client();
+        $response = $client->get(sprintf('http://localhost:3000/allTask/%s',session('loggedUserClass')));
+        $allTask = json_decode($response->getBody(), true);
+
+
+
+        return view('student/download', ['submittedTask'=>$submittedTask,'allTask'=>$allTask]);
     }
 
     public function profile()
