@@ -107,50 +107,6 @@ class TugasController extends Controller
                
             }
 
-            if($file=NULL){
-                if($rescek[0]['payload']!=NULL){
-                    $response = $client->post('http://localhost:3000/tugasUpdateWoFile', [
-                        'headers' => [
-                            'Content-Type' => 'application/json',
-                        ],
-                        'json' => [
-                            'user_id' => $user_id,
-                            'namatugas' => $nama_siswa,
-                            'kelas' => $kelas,
-                            'tenggat' => $tenggat,
-                            'tanggalmasuk' => $tanggalmasuk,
-                            'desk_tugas' => $desk_tugas,
-                            'file_desc' => $file_desc,
-                            'task_id' => $task_id,
-        
-        
-                            // 'task_id' => $task_id,
-                        ],
-                    ]);
-                }
-                else{
-                    $response = $client->post('http://localhost:3000/tugasWoFile', [
-                        'headers' => [
-                            'Content-Type' => 'application/json',
-                        ],
-                        'json' => [
-                            'user_id' => $user_id,
-                            'namatugas' => $nama_siswa,
-                            'kelas' => $kelas,
-                            'tenggat' => $tenggat,
-                            'tanggalmasuk' => $tanggalmasuk,
-                            'desk_tugas' => $desk_tugas,
-                            'file_content' => $fileContent,
-                            'file_desc' => $file_desc,
-                            'task_id' => $task_id,
-        
-        
-                            // 'task_id' => $task_id,
-                        ],
-                    ]);
-                }
-
-            }
             
             return redirect('/tasks');
         } catch (ClientException $e) {
