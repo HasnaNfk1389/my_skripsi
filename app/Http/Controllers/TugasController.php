@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Carbon\Carbon;
 
 class TugasController extends Controller
 {
@@ -21,8 +22,10 @@ class TugasController extends Controller
         $kelas = $request->kelas;
         $desk_tugas = $request->namatugas;
         // $status = $request->status;
-        $tenggat = $request->tanggalmasuk;
-        $tanggalmasuk = date('Y-m-d H:i:s');
+        $input_tenggat = $request->tanggalmasuk;
+        $tenggat_format = Carbon::parse($input_tenggat);
+        $tenggat = $tenggat_format-> format('Y-m-d\TH:i:sP'); 
+        $tanggalmasuk = date('Y-m-d\TH:i:s');
         $task_id = $request->task_id;
         if($task_id!=NULL){
             $client = new Client();
@@ -212,7 +215,7 @@ public function studentPostTugas(Request $request)
         $nama_siswa = $request->tname;
         $kelas = $request->kelas;
         $task = $request->task_id;
-        $tanggalmasuk = date('Y-m-d H:i:s');
+        $tanggalmasuk = date('Y-m-d\TH:i:s');
         $client = new Client();
         $cekfile = $client->get(sprintf("http://localhost:3000/cekfile/%s/%s",$task,$user_id));
         $rescek = json_decode($cekfile->getBody(), true);
