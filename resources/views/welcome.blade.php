@@ -52,7 +52,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="/all_task">Tasks</a>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="/tasksk">Tasks</a>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -76,8 +76,9 @@
                                                         @endif
                                                         @endforeach
                                                         @if(isset($prog))
-                                                        {{$completion=round($prog/$countTask*100)}}%
-                                                        @endif                                                
+                                                        @php $completion=round($prog/$countTask*100) @endphp
+                                                        @endif             
+                                                        {{isset($completion)?$completion:'0'}}%                                   
                                                         </div>
                                                         </div>
                                                 <div class="col">
@@ -103,7 +104,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="/score">Score</a>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="/tasks">Score</a>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
