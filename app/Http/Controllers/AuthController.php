@@ -206,7 +206,11 @@ class AuthController extends Controller
 
     public function welcome_lecturer()
     {
-        return view('lecturer/welcome_lecturer');
+        $client = new \GuzzleHttp\Client();
+        $response = $client->get(sprintf('http://localhost:3000/allMateri',session('loggedUserClass')));
+        $materi = json_decode($response->getBody(), true);
+
+        return view('lecturer/welcome_lecturer', ['materi'=>$materi]);
     }
 
     public function welcome_admin()
