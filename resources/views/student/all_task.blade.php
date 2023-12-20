@@ -91,7 +91,7 @@
                                                         <td>{{ $task['task']['namatugas'] ?? 'N/A' }}</td>
                                                         <td>{{ $task['task']['desk_tugas'] ?? 'N/A' }}</td>
                                                         <td><a href="{{$task['task']['bucket_url']}}">FILE</a></td>
-                                                        <td>{{ $task['task']['tgl_kumpul'] ?? 'N/A' }}</td>
+                                                        <td>{{ isset($task['task']['tgl_kumpul']) ? \Carbon\Carbon::parse($task['task']['tgl_kumpul'])->format('Y d M') : 'N/A' }}</td>
                                                         <td>{{ $task['task']['id'] ?? 'N/A' }}</td>
 
 
