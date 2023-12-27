@@ -198,8 +198,7 @@
                                                 untuk membantu siswa, guru, dan administrator sekolah dalam 
                                                 pengelolaan tugas dan pencapaian akademis.</p>
                                             </div>
-                                            <iframe src="https://calendar.google.com/calendar/embed?src=2ce6cde01b5f1b7d0c9f90cfcc20b198b696c546b2ab34acace2495945afce28%40group.calendar.google.com&ctz=Asia%2FJakarta" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-                                        </div>
+                                            <iframe src="https://calendar.google.com/calendar/embed?src=3845452da0259e35908a3ff5822641c0ba2297f5d501d5b9bc206746a4fd9b37%40group.calendar.google.com&ctz=Asia%2FJakarta" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>                                        </div>
                                     </div>
                                 </div>
                             </div>
